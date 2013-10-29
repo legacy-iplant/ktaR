@@ -79,3 +79,4 @@ for (file in 1:length(filenames)) {
 AUC <- as.data.frame(AUC)
 names(AUC) <- c('Output','Area Under Curve','Best Threshold','Specificity','Sensitivity')
 write(paste(AUC[,1],AUC[,2],sep='\t'),file='alltheAUC.txt')
+write(coords(rocobj,'best',ret=c('threshold')),file='bestthres.txt')
