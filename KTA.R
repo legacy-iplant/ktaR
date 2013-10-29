@@ -48,7 +48,7 @@ for (output in 1:length(app_output_list)) {
 }
 
 # Generate ROC curves
-AUC <- matrix(nrow=length(filenames),ncol=2)
+AUC <- matrix(nrow=length(filenames),ncol=5)
 AUC[,1] <- filenames
 
 for (file in 1:length(filenames)) {
@@ -69,8 +69,13 @@ for (file in 1:length(filenames)) {
 	my_output$truth <- ifelse(eval(parse(text=paste('my_output',SNP_col,sep='$'))) %in% my_truth, 1, 0)
 	rocobj <- roc(my_output$truth~eval(parse(text=paste('my_output',threshold_col,sep='$'))))
 	AUC[file,2] <- as.numeric(rocobj$auc)
+	AUC[file,3] <- as.numeric(coords(rocobj, 'best', ret=c('threshold')))
+	AUC[file,4] <- as.numeric(coords(rocobj, 'best', ret=c('specificity')))
+	AUC[file,5] <- as.numeric(coords(rocobj, 'best', ret=c('sensitivity')))
 	}
 }
 
 # Write the AUC's to a file
+AUC <- as.data.frame(AUC)
+names(AUC) <- c('Output','Area Under Curve','Best Threshold','Specificity','Sensitivity')
 write(paste(AUC[,1],AUC[,2],sep='\t'),file='alltheAUC.txt')
