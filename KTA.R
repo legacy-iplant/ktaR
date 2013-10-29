@@ -35,12 +35,6 @@ if (truth_file_or_dir == 0) {
 	truth_list <- list.files(truth_dir)
 }
 
-# Add protections for if truth_list is only one file
-if (length(truth_list) == 1) {
-	truth_file <- truth_list[1]
-	truth_file_or_dir <- 1
-}
-
 # Get filenames for app outputs and truth strings
 filenames <- matrix(nrow=length(app_output_list),ncol=1)
 for (output in 1:length(app_output_list)) {
