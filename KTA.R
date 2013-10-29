@@ -4,7 +4,9 @@
 #####			Contact: (770) 289-8830				#####
 #####			dustin.landers@gmail.com			#####
 #########################################################
-  
+
+options(warn=-1)  
+
 # Dependencies
 require(pROC)
 
