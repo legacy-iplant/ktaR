@@ -11,26 +11,11 @@ options(warn=-1)
 require(pROC)
 require(methods)
 
-# Command-line arguments
-args <- commandArgs(trailingOnly = TRUE)
-app_output_dir <- args[1] # First argument is the directory of app outputs (string)
-truth_file_or_dir <- args[2] # Second argument is 1 if there is only one truth file
-							 # (numeric/integer)
-if (truth_file_or_dir == 0) {
-	truth_dir <- args[3] # The third argument is either directory or file of 
-						 # known-truth SNPs (string); if this is a directory, they
-						 # must have the same names as their output counterparts
-}
-if (truth_file_or_dir == 1) {
-	truth_file <- args[3]
-}
-threshold_col <- args[4] # Fourth argument is a string name of the threshold column
-						 # name, for example if it's the P-value you want to vary,
-						 # and the name of the column is the string here (string)
-SNP_col <- args[5] 		 # Fifth argument is a string of the SNP column (string)
-include_best <- args[6]  # If 1, includes output with recommended threshold; else 0
-include_all <- args[7]   # If 1, includes file for each output with sens, spec, and 
-						 #    threshold; else 0
+app_output_dir <- '/users/dustin/desktop/output'
+truth_dir <- '/users/dustin/desktop/truth'
+threshold_col <- 'P'
+SNP_col <- 'SNP'
+truth_file_or_dir <- 0
 						 
 # Get list of files for app outputs and 
 # known-truth text files
@@ -73,16 +58,13 @@ for (file in 1:length(filenames)) {
 	my_output$truth <- ifelse(eval(parse(text=paste('my_output',SNP_col,sep='$'))) %in% my_truth, 1, 0)
 	rocobj <- roc(my_output$truth~eval(parse(text=paste('my_output',threshold_col,sep='$'))))
 	AUC[file,2] <- as.numeric(rocobj$auc)
-	if (include_best == 1) {
-		AUC[file,3] <- coords(rocobj,'best', ret=c('threshold'))
-		AUC[file,4] <- coords(rocobj,'best', ret=c('specificity'))
-		AUC[file,5] <- coords(rocobj,'best', ret=c('sensitivity'))
-		}
+	AUC[file,3] <- coords(rocobj,'best', ret=c('threshold'))
+	AUC[file,4] <- coords(rocobj,'best', ret=c('specificity'))
+	AUC[file,5] <- coords(rocobj,'best', ret=c('sensitivity'))
 	}
 }
 
 # Write the AUC's to a file
 AUC <- as.data.frame(AUC)
 names(AUC) <- c('Output','Area Under Curve','Best Threshold','Specificity','Sensitivity')
-write(paste(AUC[,1],AUC[,2],sep='\t'),file='AUC.txt')
-write.csv(AUC,file='allCSV.txt',quote=FALSE, row.names=FALSE)
+write.csv(AUC,file='alltheAUC.txt',quote=FALSE, row.names=FALSE)
