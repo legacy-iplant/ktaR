@@ -54,6 +54,7 @@ for (output in 1:length(app_output_list)) {
 # Generate ROC curves
 AUC <- matrix(nrow=length(filenames),ncol=5)
 AUC[,1] <- filenames
+files_to_write <- list()
 
 for (file in 1:length(filenames)) {
 	for (output in 1:length(app_output_list)) {
@@ -78,6 +79,12 @@ for (file in 1:length(filenames)) {
 		AUC[file,4] <- coords(rocobj,'best', ret=c('specificity'))
 		AUC[file,5] <- coords(rocobj,'best', ret=c('sensitivity'))
 		}
+	if (include_all == 1) {
+		df <- as.data.frame(cbind(rocobj$thresholds,rocobj$sensitivities,rocobj$specificities))
+		names(df) <- c('Threshold','Sensitivities','Specificities')
+		assign(paste(filenames[file],'_ROCValues',sep=''),df)
+		files_to_write <- append(files_to_write, paste(filenames[file],'_ROCValues',sep=''))
+	}
 	}
 }
 
@@ -86,3 +93,9 @@ AUC <- as.data.frame(AUC)
 names(AUC) <- c('Output','Area Under Curve','Best Threshold','Specificity','Sensitivity')
 write(paste(AUC[,1],AUC[,2],sep='\t'),file='AUC.txt')
 write.csv(AUC,file='allCSV.txt',quote=FALSE, row.names=FALSE)
+
+if (include_all == 1) {
+	for (each in 1:length(files_to_write)) {
+		write.csv(eval(parse(text=files_to_write[[each]])),file=paste(files_to_write[[each]],'txt',sep='.'),quote=FALSE,row.names=FALSE)
+	}
+}
