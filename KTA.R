@@ -44,7 +44,6 @@ for (output in 1:length(app_output_list)) {
 	}
 	filenames[output] <- name
 }
-#write(filenames,'my_files.txt')
 
 # Generate ROC curves
 AUC <- matrix(nrow=length(filenames),ncol=2)
@@ -70,4 +69,5 @@ for (file in 1:length(filenames)) {
 	}
 }
 
+# Write the AUC's to a file
 write(paste(AUC[,1],AUC[,2],sep='\t'),file='alltheAUC.txt')
