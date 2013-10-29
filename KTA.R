@@ -69,9 +69,9 @@ for (file in 1:length(filenames)) {
 	my_output$truth <- ifelse(eval(parse(text=paste('my_output',SNP_col,sep='$'))) %in% my_truth, 1, 0)
 	rocobj <- roc(my_output$truth~eval(parse(text=paste('my_output',threshold_col,sep='$'))))
 	AUC[file,2] <- as.numeric(rocobj$auc)
-	AUC[file,3] <- as.numeric(coords(rocobj, 'best', ret=c('threshold')))
-	AUC[file,4] <- as.numeric(coords(rocobj, 'best', ret=c('specificity')))
-	AUC[file,5] <- as.numeric(coords(rocobj, 'best', ret=c('sensitivity')))
+	AUC[file,3] <- as.numeric(coords.roc(rocobj,'best', ret=c('threshold')))
+	AUC[file,4] <- as.numeric(coords.roc(rocobj,'best', ret=c('specificity')))
+	AUC[file,5] <- as.numeric(coords.roc(rocobj,'best', ret=c('sensitivity')))
 	}
 }
 
