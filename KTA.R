@@ -121,3 +121,4 @@ for (file in 1:length(filenames)) {
 # Write the AUC's to a file
 write(paste(AUC[,1],AUC[,2],sep='\t'),file='AUC.txt')
 write.table(AUC,file='KTResults.txt',quote=FALSE,row.names=FALSE,sep='\t')
+write(paste('\nVariance:',var(AUC[,2]),'\nStandard Deviation:',sd(AUC[,2])),file='KTResults.txt',append=TRUE)
