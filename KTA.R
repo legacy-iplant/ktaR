@@ -98,7 +98,7 @@ for (file in 1:length(filenames)) {
 		}
 
 		if (include_all == 1) {
-			df <- as.data.frame(cbind(rocobj$thresholds,rocobj$sensitivities,rocobj$specificities,))
+			df <- as.data.frame(cbind(rocobj$thresholds,rocobj$sensitivities,rocobj$specificities))
 			names(df) <- c('Threshold','TPR','TNR')
 			write.table(df,file=paste(filenames[file],'_ROCValues.txt',sep=''),
 				quote=FALSE,row.names=FALSE,sep='\t')
