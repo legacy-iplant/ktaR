@@ -58,10 +58,21 @@ for (output in 1:length(app_output_list)) {
 	filenames[output] <- name
 }
 
-# Generate ROC curves
-AUC <- matrix(nrow=length(filenames),ncol=6)
+# Create table for storing known-truth results
+if (include_best == 1) {
+	AUC <- as.data.frame(matrix(nrow=length(filenames),ncol=6))
+	names(AUC) <- c('Output','Area Under Curve','Best Threshold','Specificity (TNR)','Sensitivity (TPR)',
+	'Precision (PPV)')
+}
+
+if (include_best == 0) {
+	AUC <- as.data.frame(matrix(nrow=length(filenames),ncol=2))
+	names(AUC) <- c('Output','Area Under Curve')
+}
+
 AUC[,1] <- filenames
 
+# Generate ROC curves
 for (file in 1:length(filenames)) {
 
 	for (output in 1:length(app_output_list)) {
@@ -108,8 +119,5 @@ for (file in 1:length(filenames)) {
 }
 
 # Write the AUC's to a file
-AUC <- as.data.frame(AUC)
-names(AUC) <- c('Output','Area Under Curve','Best Threshold','Specificity (TNR)','Sensitivity (TPR)',
-	'Precision (PPV)')
 write(paste(AUC[,1],AUC[,2],sep='\t'),file='AUC.txt')
 write.table(AUC,file='KTResults.txt',quote=FALSE,row.names=FALSE,sep='\t')
