@@ -34,6 +34,7 @@ SNP_col <- args[5] 		 # Fifth argument is a string of the SNP column (string)
 include_best <- args[6]  # If 1, includes output with recommended threshold; else 0
 include_all <- args[7]   # If 1, includes file for each output with sens, spec, and 
 						 #    threshold; else 0
+
 						 
 # Get list of files for app outputs and 
 # known-truth text files
