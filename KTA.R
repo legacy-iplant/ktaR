@@ -112,4 +112,4 @@ AUC <- as.data.frame(AUC)
 names(AUC) <- c('Output','Area Under Curve','Best Threshold','Specificity (TNR)','Sensitivity (TPR)',
 	'Precision (PPV)')
 write(paste(AUC[,1],AUC[,2],sep='\t'),file='AUC.txt')
-write.table(AUC,file='allCSV.txt',quote=FALSE,row.names=FALSE,sep='\t')
+write.table(AUC,file='KTResults.txt',quote=FALSE,row.names=FALSE,sep='\t')
