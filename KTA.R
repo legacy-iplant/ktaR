@@ -19,8 +19,8 @@ truth_file_or_dir <- args[2] # Second argument is 1 if there is only one truth f
 
 if (truth_file_or_dir == 0) {
 	truth_dir <- args[3] # The third argument is either directory or file of 
-						 # known-truth SNPs (string); if this is a directory, they
-						 # must have the same names as their output counterparts
+						 # known-truth SNPs (space-separated); if this is a directory,
+						 # they must have the same names as their output counterparts
 }
 
 if (truth_file_or_dir == 1) {
