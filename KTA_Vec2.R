@@ -57,17 +57,11 @@ in_truth <- function(x) {
 	x %in% my_truth
 }
 
-#KTResults <- list()
-#files <- list()
-
 do_analyze <- function(x) {
 	mydata <- my_read_table(x)
 	mydata$truth <- sapply(my_SNP_eval(mydata),in_truth)
-	#files <- append(files, filename(locs[[i]]))
-	#KTResults <- append(KTResults, roc(mydata$truth~my_P_eval(mydata))$auc)
 	return(roc(mydata$truth~my_P_eval(mydata))$auc)
 }
 
 KTResults <- sapply(locs,do_analyze)
 print(KTResults)
-#test <- matrix(c(unlist(files), unlist(KTResults)),ncol=2)
