@@ -59,9 +59,9 @@ in_truth <- function(x) {
 
 do_analyze <- function(x) {
 	mydata <- my_read_table(x)
-	mydata$truth <- sapply(my_SNP_eval(mydata),in_truth)
-	return(roc(mydata$truth~my_P_eval(mydata))$auc)
+	truth <- sapply(my_SNP_eval(mydata),in_truth)
+	print(roc(truth~my_P_eval(mydata))$auc)
+	rm(mydata)
 }
 
-KTResults <- sapply(locs,do_analyze)
-print(KTResults)
+print(lapply(locs,do_analyze))
