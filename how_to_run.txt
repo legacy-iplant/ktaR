@@ -1,0 +1,3 @@
+cd c:\users\stapletonlab\documents\github\ktar 
+
+rscript --vanilla kta2.r outputplink 1 C:\users\stapletonlab\documents\github\ktar\truth\plinkstd10.txt P SNP 1 1
