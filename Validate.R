@@ -89,5 +89,5 @@ for (i in 1:length(locs)) {
 
 }
 
-write(paste(unlist(return_names), unlist(return_auc), unlist(return_RMSE), unlist(return_auc2), sep='\t'), file='Results.txt')
+write(paste(unlist(return_names), unlist(return_auc), unlist(return_RMSE), sep='\t'), file='Results.txt')
 # End
