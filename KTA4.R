@@ -10,6 +10,7 @@ options(warn=-1)
 # Dependencies
 require(pROC)
 require(methods)
+require(getopt)
 
 # Inputs
 args <- commandArgs(trailingOnly = TRUE)
@@ -20,32 +21,10 @@ threshold_col <- args[4]
 SNP_col <- args[5]
 beta_col <- args[6]
 
-#app_output_dir <- '/Users/dustin/Desktop/DongWangOutputs'
-#truth_file <- '/Users/dustin/Desktop/dongwang_truth.txt'
-#beta_file <- '/Users/dustin/Desktop/dongwang_betas.txt'
-#threshold_col <- 'p'
-#SNP_col <- 'SNP'
-#beta_col <- 'predicted'
-					 
+# Begin
 app_output_list <- list.files(app_output_dir) # List all files in the app output dir
 my_truth <- as.character(read.table(file=truth_file,header=FALSE,stringsAsFactor=FALSE))
 my_betas <- as.numeric(read.table(file=beta_file,header=FALSE,stringsAsFactor=FALSE))
-
-#filename <- function(loc) {
-#	parts <- unlist(
-#		strsplit(loc,'/',fixed=TRUE)
-#		)
-#	file <- parts[length(parts)]
-#	parts <- unlist(
-#		strsplit(file,'.',fixed=TRUE)
-#		)
-#	name <- parts[1:(length(parts)-1)]
-#	if (length(name) > 1) {
-#		name <- paste(name,collapse='.')
-#	}
-#	return(name)
-#}
-
 
 gini <- function(x, unbiased = TRUE, na.rm = FALSE){
     if (!is.numeric(x)){
@@ -61,7 +40,7 @@ gini <- function(x, unbiased = TRUE, na.rm = FALSE){
     N <- if (unbiased) n * (n - 1) else n * n
     ox <- x[order(x)]
     dsum <- drop(crossprod(2 * 1:n - n - 1,  ox))
-    dsum / (mu * N)
+    return(dsum / (mu * N))
 }
 
 file_locations <- function(x) {
@@ -100,7 +79,7 @@ in_truth <- function(x) {
 
 locs <- lapply(app_output_list, file_locations)
 
-#return_gini <- list()
+return_gini <- list()
 return_auc <- list()
 return_names <- list()
 return_RMSE <- list()
@@ -116,11 +95,12 @@ for (i in 1:length(locs)) {
 
 	#return_gini <- append(return_gini, gini())
 	return_RMSE <- append(return_RMSE, sqrt(mean((my_beta_eval('mydata')-Beta)**2)))
-	return_auc <- append(return_auc, roc(this_truth ~ my_P_eval('mydata'))$auc)
+	my_roc <- roc(this_truth ~ my_P_eval('mydata'))
+	return_auc <- append(return_auc, my_roc$auc)
 	return_names <- append(return_names, paste(locs[[i]]))
+	return_gini <- append(return_gini, (gini(my_roc$sens)+1)/2)
 
 }
 
-write(paste(unlist(return_names), unlist(return_auc), unlist(return_RMSE), sep='\t'), file='Results.txt')
-
-#which(this_truth==TRUE)[which(names(which(this_truth==TRUE))==my_truth[1])]
+write(paste(unlist(return_names), unlist(return_auc), unlist(return_RMSE), unlist(return_gini), sep='\t'), file='Results.txt')
+# End
