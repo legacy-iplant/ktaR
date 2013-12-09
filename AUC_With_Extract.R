@@ -1,6 +1,5 @@
-options(digits=999)
-
-my.tab <- read.table(file='~/desktop/kurt.txt', header=T)
+## Title: Getting AUC From Kurt's Extract Outputs
+## Author: Dustin Landers
 
 extract.auc <- function(my.tab=my.tab) {
 	n1 <- 35
@@ -13,4 +12,7 @@ extract.auc <- function(my.tab=my.tab) {
 	return(1-auc)
 }
 
-print(extract.auc(my.tab))
+getAUC <- function(DotResultFile) {
+	my.tab <- read.table(file=DotResultFile, header=T, fill=TRUE)[1:35,]
+	return(extract.auc(my.tab))	
+}

@@ -9,15 +9,34 @@ options(warn=-1)
 
 # Dependencies
 require(methods)
+require(getopt)
 
 # Inputs
-args <- commandArgs(trailingOnly = TRUE)
-app_output_dir <- args[1]
-truth_file <- args[2]
-beta_file <- args[3]
-threshold_col <- args[4]
-SNP_col <- args[5]
-beta_col <- args[6]
+#args <- commandArgs(trailingOnly = TRUE)
+
+#options <- matrix(c('folder','f',1,"character",
+#					'truth','t',2,"character",
+#					'effect','e',2,"character",
+#					'thres','p',2,"character",
+#					'snp','s',2,"character",
+#					'beta','b',2,"character"),
+#		ncol=4,byrow=TRUE)
+
+#ret.opts <- getopt(options,args)
+
+#app_output_dir <- ret.opts$folder
+#truth_file <- ret.opts$truth
+#beta_file <- ret.opts$effect
+#threshold_col <- ret.opts$thres
+#SNP_col <- ret.opts$snp
+#beta_col <- ret.opts$beta
+
+app_output_dir <- '~/desktop/mytest/test'
+truth_file <- '~/desktop/mytest/syntruth.txt'
+beta_file <- '~/desktop/mytest/synbetas.txt'
+threshold_col <- 'P'
+SNP_col <- 'SNP'
+beta_col <- 'BETA'
 
 # Begin
 app_output_list <- list.files(app_output_dir) # List all files in the app output dir
@@ -68,11 +87,24 @@ in_truth <- function(x) {
 	x %in% my_truth
 }
 
+# Function that returns Root Mean Squared Error
+rmse <- function(error)
+{
+    sqrt(mean(error^2))
+}
+
+# Function that returns Mean Absolute Error
+mae <- function(error)
+{
+    mean(abs(error))
+}
+
 locs <- lapply(app_output_list, file_locations)
 
 return_auc <- list()
 return_names <- list()
 return_RMSE <- list()
+return_MAE <- list()
 
 for (i in 1:length(locs)) {
 	mydata <- my_read_table(locs[[i]])
@@ -83,11 +115,13 @@ for (i in 1:length(locs)) {
 		Beta[which(this_truth==TRUE)[which(names(which(this_truth==TRUE))==my_truth[j])]] <- my_betas[j]
 	}
 
-	return_RMSE <- append(return_RMSE, sqrt(mean((my_beta_eval('mydata')-Beta)**2)))
+	error <- Beta - my_beta_eval()
+	return_RMSE <- append(return_RMSE, rmse(error))
+	return_MAE <- append(return_MAE, mae(error))
 	return_names <- append(return_names, paste(locs[[i]]))
 	return_auc <- append(return_auc, auc(my_P_eval('mydata'),this_truth))
 
 }
 
-write(paste(unlist(return_names), unlist(return_auc), unlist(return_RMSE), sep='\t'), file='Results.txt')
+write(paste(unlist(return_names), unlist(return_auc), unlist(return_RMSE), unlist(return_MAE), sep='\t'), file='Results.txt')
 # End
