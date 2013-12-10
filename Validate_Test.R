@@ -12,54 +12,38 @@ require(methods)
 require(getopt)
 
 # Inputs
-args <- commandArgs(trailingOnly = TRUE)
+#args <- commandArgs(trailingOnly = TRUE)
 
-options <- matrix(c('folder','f',1,"character",
-					'class','c',0,"character",
-					'snp','g',0,"character",
-					'score','s',0,"character",
-					'effect','e',0,"character",
-					'beta','b',0,"character",
-					'severity','sr',0,"character",
-					'severity2','sr2',0,"character",
-					'severity3','sr3',0,"character"),
-		ncol=4,byrow=TRUE)
+#options <- matrix(c('folder','f',1,"character",
+#					'class','c',0,"character",
+#					'snp','g',0,"character",
+#					'score','s',0,"character",
+#					'effect','e',0,"character",
+#					'beta','b',0,"character",
+#					'thres','t',03,"character"),
+#		ncol=4,byrow=TRUE)
 
-ret.opts <- getopt(options,args)
+#ret.opts <- getopt(options,args)
 
-app_output_dir <- ret.opts$folder
-truth_file <- ret.opts$class
-SNP_col <- ret.opts$snp
-threshold_col <- ret.opts$score
-
-# Can do up to three seperate H statistics using different severity ratios --
-# 		This is equivalent with testing under different priors
-
-if (is.null(ret.opts$severity)) {
-	sr <- NA
-} else {sr <- as.numeric(ret.opts$severity)}
-
-if (is.null(ret.opts$severity2)) {
-	sr2 <- NA
-	sr2_do <- FALSE
-} else {
-	sr2 <- as.numeric(ret.opts$severity2)
-	sr2_do <- TRUE
-}
-
-if (is.null(ret.opts$severity3)) {
-	sr3 <- NA
-	sr3_do <- FALSE
-} else {
-	sr3 <- as.numeric(ret.opts$severity3)
-	sr3_do <- TRUE
-}
+#app_output_dir <- ret.opts$folder
+#truth_file <- ret.opts$class
+#SNP_col <- ret.opts$snp
+#threshold_col <- ret.opts$score
+#my_threshold <- ret.opts$thres
 
 do_effect <- TRUE
-if (is.null(ret.opts$effect)) 
-	do_effect <- FALSE
+#if (is.null(ret.opts$effect)) 
+#	do_effect <- FALSE
 
 do_truth <- TRUE
+
+app_output_dir <- '~/desktop/mytest/test'
+truth_file <- '~/desktop/mytest/syntruth.txt'
+beta_file <- '~/desktop/mytest/synbetas.txt'
+threshold_col <- 'P'
+SNP_col <- 'SNP'
+beta_col <- 'BETA'
+sr <- 2
 
 # Begin
 app_output_list <- list.files(app_output_dir) # List all files in the app output dir
@@ -474,9 +458,7 @@ vector_eval <- function(x) {
 
 # Function for returning column names in final output
 make_col_name <- function(x) {
-	return(
-		unlist(strsplit(x,'_',fixed=TRUE))[2]
-		)
+	return(unlist(strsplit(x,'_',fixed=TRUE))[2])
 }
 
 # Creating locations to be used in for loop of classification and error estimates
@@ -491,11 +473,6 @@ return_H <- list()
 return_Gini <- list()
 return_AUCH <- list()
 return_KS <- list()
-return_H2 <- list()
-return_H3 <- list()
-
-# Begin for-loop through every simulated output to create descriptive statistics --
-# 		of classification performance
 
 for (i in 1:length(locs)) {
 
@@ -519,14 +496,6 @@ for (i in 1:length(locs)) {
 			return_Gini <- append(return_Gini, myh$metrics[2])
 			return_AUCH <- append(return_AUCH, myh$metrics[4])
 			return_KS <- append(return_KS, myh$metrics[5])
-		if (sr2_do==TRUE) {
-			myh <- HMeasure(this_truth, my_P_eval('mydata'), severity.ratio=sr2)
-			return_H2 <- append(return_H2, myh$metrics[1])
-		}
-		if (sr3_do==TRUE) {
-			myh <- HMeasure(this_truth, my_P_eval('mydata'), severity.ratio=sr3)
-			return_H3 <- append(return_H3, myh$metrics[1])
-		}
 	}
 
 	return_Names <- append(return_Names, app_output_list[i])
@@ -534,7 +503,7 @@ for (i in 1:length(locs)) {
 }
 
 use_these <- list()
-possibles <- c('return_Names','return_AUC','return_RMSE','return_MAE','return_H','return_H2','return_H3','return_Gini','return_AUCH','return_KS')
+possibles <- c('return_Names','return_AUC','return_RMSE','return_MAE','return_H','return_Gini','return_AUCH','return_KS')
 for (i in 1:length(possibles)) {
 	if (length(vector_eval(possibles[i])) > 0) {
 		use_these <- append(use_these, possibles[i])
