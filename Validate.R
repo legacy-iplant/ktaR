@@ -22,7 +22,8 @@ options <- matrix(c('folder','f',1,"character",
 					'beta','b',0,"character",
 					'severity','sr',0,"character",
 					'severity2','sr2',0,"character",
-					'severity3','sr3',0,"character"),
+					'severity3','sr3',0,"character",
+					'delim','d',0,"character"),
 		ncol=4,byrow=TRUE)
 
 ret.opts <- getopt(options,args)
@@ -53,6 +54,12 @@ if (is.null(ret.opts$severity3)) {
 } else {
 	sr3 <- as.numeric(ret.opts$severity3)
 	sr3_do <- TRUE
+}
+
+if (is.null(ret.opts$delim)) {
+	delim <- '\t'
+} else {
+	delim <- ret.opts$delim
 }
 
 do_effect <- TRUE
@@ -89,7 +96,7 @@ file_locations <- function(x) {
 # Loads in an application output
 my_read_table <- function(x) {
 	return(
-		read.table(file=x,header=TRUE,stringsAsFactor=FALSE)
+		read.table(file=x,header=TRUE,stringsAsFactor=FALSE,sep=delim)
 		)
 }
 
