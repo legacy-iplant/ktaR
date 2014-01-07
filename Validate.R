@@ -127,13 +127,13 @@ in_truth <- function(x) {
 # Function that returns Root Mean Squared Error
 rmse <- function(error)
 {
-    sqrt(mean(error^2))
+    sqrt(mean(error^2, na.rm=TRUE))
 }
 
 # Function that returns Mean Absolute Error
 mae <- function(error)
 {
-    mean(abs(error))
+    mean(abs(error), na.rm=TRUE)
 }
 
 # Returns confusion matrix
