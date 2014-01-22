@@ -7,6 +7,7 @@
 \documentclass[twoside,a4paper]{refart}
 \usepackage{makeidx}
 \usepackage{ifthen}
+\usepackage{graphicx}
 % ifthen wird vom Bild von N.Beebe gebraucht!
 
 \def\bs{\char'134 } % backslash in \tt font.
@@ -14,8 +15,8 @@
 \newcommand{\eg}{e.\,g..}
 \DeclareRobustCommand\cs[1]{\texttt{\char`\\#1}}
 
-\title{Validate: A Pipeline for Evaluating Classification and  Regression Performance for GWAS/QTL Tools Using Known-Truth Datasets}
-\author{Ann Stapleton and Dustin Landers \\
+\title{Validate: A Pipeline for Evaluating Performance for GWAS/QTL Tools Using Known-Truth Datasets}
+\author{Ann Stapleton, Kurt Michels, and Dustin Landers \\
 University of North Carolina Wilmington \\
 }
 
@@ -44,38 +45,31 @@ University of North Carolina Wilmington \\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{center}
+	\makebox[12cm][r]{\includegraphics[width=17cm]{doc_comic1}}
+\end{center}
+
 \section{Introduction}
 
 \subsection{About the Developers}
 
 \marginlabel{Project Lead and Principal Investigator}Dr. Ann Stapleton works at the interfaces, such as the junctions between research and teaching, individual research projects and large collaborative projects, the organization of international meetings and high-school teacher inquiry labs. Most recently, she has worked at the interface between plant biology and software engineering, leading the way to broad methods applicable to evaluating genotype-to-phenotype analytical methods.
 
-\marginlabel{Statistical Analyst and Developer}Dustin Landers received a BS from Appalachian State and continued his education in Applied Statistics at UNCW. Moving from world of survey statistics to the that of Big Data, he has an interest in bridging the gap between statistics and software engineering. 
+\marginlabel{Statistical Analyst and Developer}Dustin Landers received a BS from Appalachian State where he learned a lot about survey research and using statistics to solve problems and answer questions. He continued his education at UNCW by studying Applied Statistics. Moving from world of polling and survey statistics to the that of Big Data, he has an interest in bridging the gap between statistics and software engineering and seeing the combined discipline brought to bear on problems once considered impossible.
 
 \index{author}
 
-\subsection{Why Do We Need Validate?}
+\subsection{Why Validate?}
 
-Measuring the predictive performance of GWAS and QTL models and applications presents a unique challenge to the predictive modeler. A typical method for evaluation of predictive models is to assess their performance through a process known as cross-validation. In cross-validation, the initial data is broken down in to a training data set and test data set. Using the training data set, the actual predictive model is built. We then pass the test data set through the model, and compare the predicted values with the known-truth values. Doing so allows us to assess if our initial model was over or under fit.
+To test known-truth data sets, we had the idea of looking at a bunch of ROC plots for each simulation run in testing a certain tool. Of course, this was never really feasible because any one simulation run could be atypical. We asked ourselves how could we run lots of simulations through a tool, and test the outputs in a way that gave us insight in to the performance of these GWAS and QTL tools?
 
-However, with GWAS and QTL models, we are not so much interested in the predicted phenotypes. Instead, we are interested in what the models tell us about how we arrived at the predicted phenotypes. Did the SNP produce an effect significantly different from zero? What was the effect? Are the SNPs that correlate with phenotypic effects clustered in a general region of the genome or do they vary in location? Are there lots of small effects or a few large effects? Are the effects factorial in nature (epistasis) or are they additive?
+It was obvious to us that iPlant gave us the resources to make this happen, but we had to make this as easy as possible if we expected people to use it. 
 
-In order to assess the performance of these kinds of models in giving us the answers to these questions, we rely on large simulated data sets that are generated with known random effects from identical stochastic processes. By using models to predict data sets for which already know the processes underlying their development, we can get an idea of how accurate the models are at identifying real processes in nature and empirically estimate the model’s error using even basic statistical tools. 
+We sought after summary measures of performance in order to break down the complexity of any individual simulation. We ultimately decided on several classification measures such as the area under the ROC curve, H, and the Kolmogorov-Smirnov statistic. For evaluating effect sizes, we include root mean squared error and mean absolute error. 
 
-\subsection{What is the GWAS/QTL Problem in Genetics and How Do We Approach It?}
-We begin by introducing what we considered in developing an application to test GWAS classification and effect size estimation performance, and how we approached a universal method for measuring classifier and estimation performance. We assume that GWAS models and algorithms are typically interested in two separate but intimately related statistical and machine learning problems.
+But how do we run all these simulations? How do we store them all in a single location so we can calculate these measures? How do we visualize them?
 
-First, GWAS applications can be seen as a classification problem under which we are only interested in estimating whether or not a marker has an effect or not: a binary response of true or false. Or, in terms of effect sizes, is the true effect of a marker different from zero? 
-
-Second, GWAS applications can be seen as an estimation or regression problem. In the latter case, we use relatively simple measures such as Root Mean Squared Error (RMSE) and Mean Absolute Error (MAE) to evaluate effectiveness. Validate treats this as an optional parameter, and the focus of Validate is on estimating GWAS applications' effectiveness as a classifier.
-
-Usually, the classifier problem can be formulated such that we are interested in understanding how $\mathbf{Y}$, a vector of some (usually quantitatively) observed trait, is a function of $\mathbf{X_i}$, a vector of a qualitatively observed genotype for some given SNP or marker $i$. We are interested in establishing a new vector $\mathbf{T}$:
-$$ T_{i} = c(s(i); t), T_{i} \in \left\{ {0, 1}\right\} $$
-where $s(x)$ is a scoring function and $t$ is an arbitrary threshold. $c(x; t)$ returns a predicted class based on the score. We assume that the end goal is a vector that indicates which markers are associated with change in the quantitative trait.
-
-By cross-validating models with data that we have generated, we can test the effectiveness of models by comparing a known version of $\mathbf{T}$, which we will denote $\mathbf{K}$, with the $\mathbf{T}$ vector generated from the GWAS application. For some measures, such as AUC, $\mathbf{K}$ will remain the same while $\mathbf{T}$ changes under new parameter settings for $t$.
-
-For this reason, for the purposes of Validate, we assume GWAS applications are serving the function of $s(x)$. In other words, we view GWAS applications' primary goal as assigning scores to markers. An application which returns $c(x; t)$ is limited to other measures of performance, such as misclassification error, true positive rate, and so on.
+These are the problems we sought to solve. For each problem, we have our own solution. We also left them divided. This way you can decide whether to use our solution or to use your own if you have a unique scenario.
 
 \subsection{How to Use This Manual}
 
