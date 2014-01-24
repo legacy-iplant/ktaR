@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  24 JAN 2014 09:15
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  24 JAN 2014 09:33
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -275,32 +275,29 @@ Package pdftex.def Info: doc_step1_3.png used on input line 151.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [6 <./doc_step1_2.png>] [7 <./doc_step1_3.png>]
-Underfull \vbox (badness 4647) has occurred while \output is active []
-
- [8]
-[9] (./doc2.aux) ) 
+ [6 <./doc_step1_2.png>] [7 <./doc_step1_3.png>] [8] [9] (./doc2.aux) ) 
 Here is how much of TeX's memory you used:
- 3713 strings out of 493488
- 51478 string characters out of 3141326
- 164510 words of memory out of 3000000
- 6978 multiletter control sequences out of 15000+200000
+ 3714 strings out of 493488
+ 51488 string characters out of 3141326
+ 165510 words of memory out of 3000000
+ 6979 multiletter control sequences out of 15000+200000
  9259 words of font info for 32 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
  38i,7n,41p,863b,1863s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmbx10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmbx12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmbx9.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmbxti10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmmi8.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmr10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mr8.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9
-.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.
-pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pf
-b></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>
-</usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on doc2.pdf (9 pages, 474669 bytes).
+</usr/lo
+cal/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/loc
+al/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/loca
+l/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/
+texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/local
+/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/t
+exlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/tex
+live/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texliv
+e/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2
+012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/local/texlive/20
+12/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2012
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2012/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on doc2.pdf (9 pages, 477436 bytes).
 PDF statistics:
  86 PDF objects out of 1000 (max. 8388607)
  58 compressed objects within 1 object stream

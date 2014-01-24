@@ -132,7 +132,7 @@ The following code is to just an example of how the submission may go assuming y
 %\end{center}
 
 \vspace{-5mm}
-First, you need to make sure of the specific application name assigned to your tool in the API and of any special parameters required in order to run. For example, PLINK requires a PEDMAP format. The PEDMAP format is essentially two files, the .PED and the .MAP file for each known-truth data set. 
+First, you need to make sure of the specific application name assigned to your tool in the API and of any special parameters or inputs required in order to run. For example, PLINK requires a PEDMAP format. The PEDMAP format is essentially two files, the .PED and the .MAP file for each known-truth data set. 
 
 For example, our simulation files are stored in a shared folder, where each odd file number is a .PED and each even is a .MAP. Each odd is a .PED file and the subsequent file number is a .MAP like so:
 \begin{center}
@@ -184,7 +184,7 @@ We can use some scripting in R and rPlant to accomplish the same thing we did ea
 > require(rPlant) 
 > Validate("username", "password")
 > mydir <- ListDir("simulations")
-> genos <- matrix(nrow=600,ncol=1)
+> genos <- matrix(nrow=1200,ncol=1)
 > break.data <- function(x,y=2) {
 +	broken <- unlist(strsplit(x,'_',TRUE))
 +	return(broken[y])
@@ -194,7 +194,7 @@ We can use some scripting in R and rPlant to accomplish the same thing we did ea
 +	genos[i] <- break.data(files[i],2) 
 +	gens <- na.omit(unique(genos))
 + }
-> oddsamp <- seq(1,5,2)
+> oddsamp <- seq(1,11,2)
 > totest <- list()
 > for (i in 1:length(genoa)) {
 +	myfiles <- list()
@@ -203,7 +203,7 @@ We can use some scripting in R and rPlant to accomplish the same thing we did ea
 +			myfiles <- append(myfiles,files[j])
 +		}
 +	}
->	myfiles <- myfiles[sample(oddsamp,3,FALSE)]
+>	myfiles <- myfiles[sample(oddsamp,2,FALSE)]
 >	myfiles <- unlist(myfiles)
 >	for (k in 1:length(files)) {
 +		for (p in 1:length(myfiles)) {
@@ -223,7 +223,30 @@ We can use some scripting in R and rPlant to accomplish the same thing we did ea
 \end{lstlisting}
 \end{center}
 
-Every situation is unique in this case, which is part of the reason we have yet to develop a graphical user interface method for submitting jobs. All that we did in the code above, is demonstrate how rPlant  
+Every situation is unique in this case, which is part of the reason we have yet to develop a graphical user interface method for submitting jobs. All that we did in the code above, is demonstrate how rPlant may be used to break up some files that had naming conventions that were separated by underscores. If you look back to the earlier image that showed what our known-truth data sets looked like, you would see that phenotype, heritability information, and population structure are all in the naming format for each data set. 
+
+This is an important piece of information, because without an appropriate naming structure, there would be no way for us to keep metadata on the known-truth data sets throughout this testing process.
+
+We break up the names to grab the pieces about phenotype information in order to essentially stratify-sample our data sets by genotype. We then have six data sets for any one genotype (three missing values types and two population structure types), and then we just pick two at random. 
+
+This insures that we include all of our genotypes in our runs, but there are simpler ways to do this, that basically just random sample from all of our data sets. The following code again assumes you are using PEDMAPs to run PLINK, but that you just want to sample a random 300 (as opposed to a stratified-random sample). 
+
+\begin{center}
+\begin{lstlisting}[frame=single]
+> set.seed(45876572)
+> require(rPlant) 
+> Validate("username", "password")
+> mydir <- ListDir("simulations")
+> mydir <- mydir[,1]
+> oddsamp <- seq(1,599,2)
+> totest <- sample(oddsamp, 300, FALSE)
+> for (i in 1:length(totes)) {
++ 	SubmitJob(application="plink-1.07ul", file.list=
++		list(mydir[totest[i]], mydir[totest[i] + 1],
++		file.path="simulation"
++ }
+\end{lstlisting}
+\end{center}
 
 %\index{rules}
 
