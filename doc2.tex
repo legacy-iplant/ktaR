@@ -8,6 +8,14 @@
 \usepackage{makeidx}
 \usepackage{ifthen}
 \usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color}
+\lstset{language=R,
+	basicstyle=\footnotesize,
+	stringstyle=\color{red},
+	keywordstyle=\color{blue},
+	rulecolor=\color{black}
+} 
 % ifthen wird vom Bild von N.Beebe gebraucht!
 
 \def\bs{\char'134 } % backslash in \tt font.
@@ -42,7 +50,6 @@ University of North Carolina Wilmington \\
 
 \newpage
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{center}
@@ -71,52 +78,174 @@ But how do we run all these simulations? How do we store them all in a single lo
 
 These are the problems we sought to solve. For each problem, we have our own solution. We also left them divided. This way you can decide whether to use our solution or to use your own if you have a unique scenario.
 
+\subsection{Getting iPlant Credentials}
+
+\subsection{Getting Your Application on an API}
+
+\subsection{Where Can I Get These?}
+
 \subsection{How to Use This Manual}
 
 Evaluating a GWAS/QTL tool with Validate is essentially four major steps after your application is installed on either the iPlant Foundation API or the Agave API:
-
 \begin{enumerate}
 \item \textbf{Running the Tool With Simulations As Inputs.}
 \seealso{Section 2}
-This step involves deciding what simulations to use and then iterating over those simulations and submitting them as job requests through the API. We recommend using some sort of scripting method that you are comfortable with. At this point, we don't have a standalone application for submitting jobs. We use Kurt Michel's rPlant, which is freely available R package that allows you to connect with iPlant's API layer to submit job requests. We also recommend sampling about 300-500 simulations per tool tested.
+This step involves deciding what simulations to use and then iterating over those simulations and submitting them as job requests through the API. We recommend using some sort of scripting method that you are comfortable with. At this point, we don't have a standalone application for submitting jobs. We use rPlant, which is freely available R package that allows you to connect with iPlant's API layer to submit job requests.
 \item \textbf{Aggregating the Outputs into a Single Folder.}
 \seealso{Section 3}
-This part is a bit of a logistical exercise. You need to put all your tool outputs that you want to be analyzed using the same known-truth metadata in to aggregate folders. For example, say we are using simulations that are generated using varying levels of heritability. Since the varying heritability values in essence produce different SNP effects, we need to essentially run Validate three separate times. Validate requires an input on an entire folder, and then iterates over those tool outputs. So the first step here, is to decide how many different runs we need to do and then create that many folders. We provide a GUI tool, \textit{Aggregate} that allows you to select files from multiple folders on your iPlant data store (multiple runs of a single tool) and move those (or aggregate them) in to a single folder.
+This part is a bit of a logistical exercise. You need to put all the tool outputs (from Step 1) that you want to be analyzed using the same known-truth metadata in to aggregate folders. For example, say we are using simulations that are generated using varying levels of heritability. Since the varying heritability values in essence produce different SNP effects, we need to essentially run Validate three separate times. Validate requires an input on an entire folder, and then iterates over those tool outputs. So the first step here, is to decide how many different runs we need to do and then create that many folders. We provide a GUI tool, \textit{Aggregate} that allows you to select files from multiple folders on your iPlant data store (multiple runs of a single tool) and move those (or aggregate them) in to a single folder.
 \item \textbf{Running \textit{Validate} on the Aggregated Folder.}
 \seealso{Section 4}
-Once you have all your outputs in aggregated folders. You can simply log in to the iPlant Discovery Environment and run \textit{Validate} on that folder. You must know two column names in the outputs: The name of the SNP column, and the name of threshold column (such as P-value). Further, if you wish the get back effect size estimation errors, you must also know the column on the estimated effect size column (for example, PLINK's is BETA). Once you submit Validate, you will receive a notification when it is completed. The \textit{Validate} output will be columns of performance measures for each tool output.
+Once you have all your outputs in aggregated folders. You can simply log in to the iPlant Discovery Environment and run \textit{Validate} on that folder. You must have at least two columns with header names in the outputs: The name of the SNP column, and the name of threshold column (such as P-value). Further, if you wish the get back effect size estimation errors, you must also know the column on the estimated effect size column (for example, PLINK's is BETA). Text files with known SNPs and effect sizes must also be included. Once you submit Validate, you will receive a notification when it is completed. The \textit{Validate} output will be columns of performance measures for each tool output.
+\vspace{-1.3mm}
 \item \textbf{Running \textit{Demonstrate} on the Validate Output.}
 \seealso{Section 5}
+Finally, once you have outputs from \textit{Validate} (which may be more than one), you need to combine them and test the differences in your measures between your simulation's parameters. Demonstrate is an R package (to be installed on the iPlant DE) that quickly combines all your results files in a folder you specify and returns sciplot factorial graphs for parameters you specify. It also returns the combined results file so that you can perform your own analyses.
 \end{enumerate}
 
 \section{Running Simulations}
 
-\index{layout design}
+%\index{layout design}
 
-\subsection{How To Run Simulations}
-\index{rules}
+\subsection{How To Run Simulations with rPlant}
+We will first show you how to batch run simulations with rPlant. First, we are using the latest R version, 3.0.2. When you open the R console, it should look something like this (we are using a Mac, so yours may look slightly different, but it will function essentially the same).
+\begin{center}
+	\includegraphics[width=\textwidth]{doc_step1_1}
+\end{center}
 
-\subsection{PLINK: An Example}
+If you haven't already installed rPlant, we recommend that you do that. After that, you need to validate your iPlant credentials so that you can access your simulation files. Then, you will need to get a list of the names of your simulations files and iterate over them in a for loop, submitting jobs to your installed application. 
+
+The following code is to just an example of how the submission may go assuming your known-truth data sets are in something like a raw format, where each known-truth data set is stored in a single file. rPlant assumes you already include your iPlant data store username in the files path, so that "iplant/home/username/simulations" is just written as "simulations" or "iplant/home/username/analyses" is just written as "analyses". This is, of course, because validating your credentials allows you to not have to keep typing you user information over and over again.
+
+%\begin{center}
+\begin{lstlisting}[frame=single]
+> install.packages("rPlant")
+> require(rPlant)
+> Validate("username", "password")
+> mydir <- ListDir("simulations")
+> for (i in 1:nrow(mydir)) {
++	SubmitJob(application="myGWASapplication", 
++	file.path="simulations", file.list=list(mydir[i,1]))
++	print(i)
++ }
+\end{lstlisting}
+%\end{center}
+
+\vspace{-5mm}
+First, you need to make sure of the specific application name assigned to your tool in the API and of any special parameters required in order to run. For example, PLINK requires a PEDMAP format. The PEDMAP format is essentially two files, the .PED and the .MAP file for each known-truth data set. 
+
+For example, our simulation files are stored in a shared folder, where each odd file number is a .PED and each even is a .MAP. Each odd is a .PED file and the subsequent file number is a .MAP like so:
+\begin{center}
+	\includegraphics[width=\textwidth]{doc_step1_2}
+\end{center}
+
+As can be seen, for our particular structure we would need to submit two files for each run. So let's walk through it. We first can list all the apps in order to find ours (which we have already installed), so that we can get the exact name that we need to use for the SubmitJob function.
+
+\begin{center}
+\begin{lstlisting}[frame=single]
+> ListApps()
+\end{lstlisting}
+\end{center}
+
+\begin{center}
+	\includegraphics[width=\textwidth]{doc_step1_3}
+\end{center}
+
+We can see that the exact name of PLINK on the Foundation API is "plink-1.07ul". We will revisit the earlier explanation to see how we would submit a PLINK job using the PEDMAP format.
+
+\begin{center}
+\begin{lstlisting}[frame=single]
+> install.packages("rPlant")
+> require(rPlant)
+> Validate("username", "password")
+> mydir <- ListDir("simulations")
+> for (i in 1:nrow(mydir)) {
++	SubmitJob(application="plink-1.07ul", 
++	file.path="simulations", file.list=list(mydir[i,1], 
++		mydir[i+1,1]))
++	print(i)
++ }
+\end{lstlisting}
+\end{center}
+
+This should iterate over each simulation in our data set and submit a PLINK job to the iPlant hardware. Since iPlant uses a queuing system, this effectively distributes your workload over many computer nodes as needed. This is obviously helpful in achieving a high volume of runs, even outside of known-truth testing. Now you know how!
+
+\subsection{Using rPlant to Sample From Your Known-Truth Data Sets}
+
+Let's say, for example, that we had 600 total known-truth data sets: Our known-truth datasets are generated from hundred different genotypes, with three different types of simulated missing values such as 0\%, 3\%, and 8\%. In addition, we have data generated with and without population structure (meaning the stochastic processes generated the data have either a single population mean or varying group means). 
+
+Say that we didn't want to run all of them, but maybe just half of them. In many cases, you may have substantially more than 600 and thus sampling makes much more sense then it does in this example. 
+
+We can use some scripting in R and rPlant to accomplish the same thing we did earlier but with some random sampling. Here is the code we used to sample 300 known-truth PEDMAPs for PLINK.
+
+\begin{center}
+\begin{lstlisting}[frame=single]
+> set.seed(192031099)
+> require(rPlant) 
+> Validate("username", "password")
+> mydir <- ListDir("simulations")
+> genos <- matrix(nrow=600,ncol=1)
+> break.data <- function(x,y=2) {
++	broken <- unlist(strsplit(x,'_',TRUE))
++	return(broken[y])
++ }
+> mydir <- mydir[,1]
+> for (i in 1:length(mydir)) {
++	genos[i] <- break.data(files[i],2) 
++	gens <- na.omit(unique(genos))
++ }
+> oddsamp <- seq(1,5,2)
+> totest <- list()
+> for (i in 1:length(genoa)) {
++	myfiles <- list()
++	for (j in 1:length(files)) {
++		if (breakdat(files[j],2)==genos[i]) {
++			myfiles <- append(myfiles,files[j])
++		}
++	}
+>	myfiles <- myfiles[sample(oddsamp,3,FALSE)]
+>	myfiles <- unlist(myfiles)
+>	for (k in 1:length(files)) {
++		for (p in 1:length(myfiles)) {
++			if (files[k]==myfiles[p]) {
++				totest <- append(totest,k)
++			}
++		}
++	}
++ }
+> totest <- unlist(totest)
+> for (i in 1:length(totest)) {
++	SubmitJob(application="plink-1.07ul", file.list=
++		list(files[totest[i]], files[totest[i]+1]), 
++		file.path="simulations")
++	print(i)
++ }
+\end{lstlisting}
+\end{center}
+
+Every situation is unique in this case, which is part of the reason we have yet to develop a graphical user interface method for submitting jobs. All that we did in the code above, is demonstrate how rPlant  
+
+%\index{rules}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Aggregating with Aggregate}
-\label{layout}
+%\label{layout}
 
-\subsection{How to Use Aggregate}
+\subsection{How to Use the GUI Aggregate Tool}
+The second major step is accomplished once all the runs have finished. In our example, depending on the resources available, can finish in a range from ten seconds to two and half minutes per run. Let's say that 
 
-\subsection{Continuing our Example}
+\subsection{How to Use the Aggregate Function in rPlant}
 
 \section{Validating with Validate}
 
-\subsection{How to Use Validate}
-
-\subsection{Validating PLINK: An Example}
+\subsection{How to Use Validate on the DE}
 
 \section{Visualizing the Validation}
 
 \subsection{How to Use the Demonstrate R Package}
 
-\subsection{Demonstrating the Validation of PLINK: An Example}
+\section{Acknowledgements}
+hmeasure.net
 
 \end{document}

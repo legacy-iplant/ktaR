@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  22 JAN 2014 17:00
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  24 JAN 2014 09:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -77,6 +77,48 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 \Gin@req@height=\dimen107
 \Gin@req@width=\dimen108
 )
+(/usr/local/texlive/2012/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count88
+\lst@gtempboxa=\box26
+\lst@token=\toks15
+\lst@length=\count89
+\lst@currlwidth=\dimen109
+\lst@column=\count90
+\lst@pos=\count91
+\lst@lostspace=\dimen110
+\lst@width=\dimen111
+\lst@newlines=\count92
+\lst@lineno=\count93
+\lst@maxwidth=\dimen112
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
+\c@lstnumber=\count94
+\lst@skipnumbers=\count95
+\lst@framebox=\box27
+)
+(/usr/local/texlive/2012/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2007/02/22 1.4 listings configuration
+))
+Package: listings 2007/02/22 1.4 (Carsten Heinz)
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 130.
+)
+(/usr/local/texlive/2012/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2004/09/05 1.3 listings language file
+)
+(/usr/local/texlive/2012/texmf-dist/tex/latex/listings/lstlang2.sty
+File: lstlang2.sty 2004/09/05 1.3 listings language file
+)
+(/usr/local/texlive/2012/texmf-dist/tex/latex/listings/lstlang3.sty
+File: lstlang3.sty 2004/09/05 1.3 listings language file
+)
 \@indexfile=\write3
 \openout3 = `doc2.idx'.
 
@@ -85,31 +127,31 @@ Writing index file doc2.idx
 (./doc2.aux)
 \openout1 = `doc2.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
  (/usr/local/texlive/2012/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count88
-\scratchdimen=\dimen109
-\scratchbox=\box26
-\nofMPsegments=\count89
-\nofMParguments=\count90
-\everyMPshowfont=\toks15
-\MPscratchCnt=\count91
-\MPscratchDim=\dimen110
-\MPnumerator=\count92
-\makeMPintoPDFobject=\count93
-\everyMPtoPDFconversion=\toks16
+\scratchcounter=\count96
+\scratchdimen=\dimen113
+\scratchbox=\box28
+\nofMPsegments=\count97
+\nofMParguments=\count98
+\everyMPshowfont=\toks16
+\MPscratchCnt=\count99
+\MPscratchDim=\dimen114
+\MPnumerator=\count100
+\makeMPintoPDFobject=\count101
+\everyMPtoPDFconversion=\toks17
 ) (/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -158,7 +200,9 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Underfull \hbox (badness 1259) in paragraph at lines 39--39
+\c@lstlisting=\count102
+
+Underfull \hbox (badness 1259) in paragraph at lines 47--47
 []\OT1/cmr/m/n/9 Understanding the ef-fec-tive-ness of Genome-Wide As-so-ci-a-t
 ion
  []
@@ -174,49 +218,92 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
  [1
 
-{/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] <doc_co
-mic1.png, id=12, 822.07124pt x 375.4025pt>
+{/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] <do
+c_comic1.png, id=15, 819.06pt x 376.40625pt>
 File: doc_comic1.png Graphic file (type png)
- <use doc_comic1.png>
-Package pdftex.def Info: doc_comic1.png used on input line 49.
-(pdftex.def)             Requested size: 483.69684pt x 220.8841pt.
 
-Overfull \hbox (25.43306pt too wide) in paragraph at lines 49--50
+<use doc_comic1.png>
+Package pdftex.def Info: doc_comic1.png used on input line 56.
+(pdftex.def)             Requested size: 483.69684pt x 222.29027pt.
+
+Overfull \hbox (25.43306pt too wide) in paragraph at lines 56--57
  [] 
  []
 
-[2 <./doc_comic1.png>]
+[3 <./doc_comic1.png>]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 80.
+(Font)              <9> on input line 92.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 80.
+(Font)              <6> on input line 92.
+ [4] <doc_step1_1.png, id=25, 639.38875pt x 882.29625pt>
+File: doc_step1_1.png Graphic file (type png)
 
-Underfull \vbox (badness 2617) has occurred while \output is active []
+<use doc_step1_1.png>
+Package pdftex.def Info: doc_step1_1.png used on input line 113.
+(pdftex.def)             Requested size: 316.0pt x 436.05812pt.
+ [5 <./doc_step1_1.png>]
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 122.
 
- [3]
-[4] (./doc2.aux) ) 
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/base/omlcmr.fd
+File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <8> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 122.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 125.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 126.
+
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 126.
+
+<doc_step1_2.png, id=29, 635.37375pt x 276.03125pt>
+File: doc_step1_2.png Graphic file (type png)
+ <use doc_step1_2.png>
+Package pdftex.def Info: doc_step1_2.png used on input line 139.
+(pdftex.def)             Requested size: 316.0pt x 137.28662pt.
+
+<doc_step1_3.png, id=30, 640.3925pt x 881.2925pt>
+File: doc_step1_3.png Graphic file (type png)
+ <use doc_step1_3.png>
+Package pdftex.def Info: doc_step1_3.png used on input line 151.
+(pdftex.def)             Requested size: 316.0pt x 434.87622pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6 <./doc_step1_2.png>] [7 <./doc_step1_3.png>]
+Underfull \vbox (badness 4647) has occurred while \output is active []
+
+ [8]
+[9] (./doc2.aux) ) 
 Here is how much of TeX's memory you used:
- 1600 strings out of 493488
- 22788 string characters out of 3141326
- 80846 words of memory out of 3000000
- 4903 multiletter control sequences out of 15000+200000
- 8347 words of font info for 29 fonts, out of 3000000 for 9000
+ 3713 strings out of 493488
+ 51478 string characters out of 3141326
+ 164510 words of memory out of 3000000
+ 6978 multiletter control sequences out of 15000+200000
+ 9259 words of font info for 32 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 37i,6n,23p,850b,195s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,7n,41p,863b,1863s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmbx10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmbx12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmbx9.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmbxti10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmr9.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-sl10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cms
-y9.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti1
-0.pfb>
-Output written on doc2.pdf (4 pages, 172589 bytes).
+cm/cmmi8.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmr10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mr8.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9
+.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.
+pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pf
+b></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>
+</usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on doc2.pdf (9 pages, 474669 bytes).
 PDF statistics:
- 54 PDF objects out of 1000 (max. 8388607)
- 37 compressed objects within 1 object stream
+ 86 PDF objects out of 1000 (max. 8388607)
+ 58 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
