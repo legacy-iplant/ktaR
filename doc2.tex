@@ -298,13 +298,45 @@ Once you launched \textit{Aggregate} you will see there is a place to enter your
 
 Now, you need to type the out the full location of the folder starting with username where your analyses are located. In this case, all of our PLINK analyses folders are located in the folder \textit{dalanders/analyses}.
 
-
-
 \includegraphics[width=\textwidth]{doc_step2_2}
 
+\textbf{Step 2-e) Enter the folder location where all your tool analyses are located and click \textit{View Folders in Directory}.}
 
+We will enter \textit{dalanders/analyses} and click the button \textit{View Folders in Directory}. This is provide us with a list of all the files and folders in that directory on the iPlant data store in the left-most listbox.
+\vspace{-1mm}
+\begin{center}
+	\makebox[12cm][r]{\includegraphics[width=17cm]{doc_step2_3}}
+\end{center}
+
+\textbf{Step 2-f) Select only folders from the known-truth data sets runs.}
+
+Now, we want to just select the folders that we just created. You can select them all using Control + Click to select individual ones, or if you wish to just select the whole list you can select all between two files by using Shift + Click. 
+
+We also provide a method selecting many at us by using the \textit{Select All Containing:} logic button at the bottom of the listbox.
+
+For example, our analyses folders all contain the words "GenotypeData" or even "Trait". 
+
+We can type in the box just to the right of \textit{Select All Containing:} "Trait" and then click the button. This should select just the folders we are interesting obtaining the contents of.
+
+We can scroll up and down to make sure that we have only selected the ones that we need. If we have selected a few that we didn't intend to. We can select those using the mouse and then click the \textit{Delete} button to remove those from the list.
+
+\begin{center}
+	\makebox[12cm][r]{\includegraphics[width=17cm]{doc_step2_4}}
+\end{center}
+
+\textbf{Step 2-g) Click \textit{View Contents of Selected Folders}}
+
+Once you've got all your folders in the first listbox, click the button on the right call \textit{View Contents of Selected Folders} and this will iterate over the folders in the left-most listbox and add the contents of all those folders to the right-most listbox. It should take a few minutes, so give it some time. Once its done, see if you can spot the files that you were interested in moving. In our case, they are the files ending in \textit{.qassoc}.
+
+\begin{center}
+	\makebox[12cm][r]{\includegraphics[width=17cm]{doc_step2_5}}
+\end{center}
+
+As you can see, 
 
 \subsection{How to Use the Aggregate Function in rPlant}
+
+\subsection{How to Use Aggregate on Atmosphere}
 
 \section{Validating with Validate}
 
@@ -314,7 +346,30 @@ Now, you need to type the out the full location of the folder starting with user
 
 \subsection{How to Use the Demonstrate R Package}
 
+\subsection{How to Use Demonstrate on the DE}
+
+\subsection{How to Use Demonstrate on Atmosphere}
+
 \section{Acknowledgements}
+
+\section{How to Interpret Performance Measures}
+
+\subsection{AUC}
+
+\subsection{H}
+
+\subsection{KS}
+
+\subsection{TPR}
+
+\subsection{FPR}
+
+\subsection{Accuracy}
+
+\subsection{MAE}
+
+\subsection{RMSE}
+
 hmeasure.net
 
 \end{document}
