@@ -80,7 +80,7 @@ These are the problems we sought to solve. For each problem, we have our own sol
 
 \subsection{Getting Your Application on an API}
 
-\subsection{Where Can I Get These?}
+\subsection{Where Can I Get These Softwares?}
 
 \subsection{How to Use This Manual}
 
@@ -353,6 +353,10 @@ This process can take about as long or longer than it did to actually view the f
 
 It may also be worth noting that by the time you read this manual, this could be a fully-integrated step in the iPlant Discovery Environment, as there was talk about this functionality being available given more time. However, we found it necessary, even though this part of the problem is almost entirely logistical, to be able to select files from multiple files and move them in to a single aggregate folder. 
 
+\begin{center}
+	\makebox[12cm][r]{\includegraphics[width=17cm]{doc_step2_7}}
+\end{center}
+
 \subsection{How to Use the Aggregate Function in rPlant}
 
 \subsection{How to Use Aggregate on Atmosphere}
@@ -360,6 +364,32 @@ It may also be worth noting that by the time you read this manual, this could be
 \section{Validating with Validate}
 
 \subsection{How to Use Validate on the DE}
+
+\textbf{Step 3-A) First, take a look at one of your analyses documents on the DE. Check for four things: The nature of the column delimitation, the name of the SNP column, the name of P-value or other importance scoring column, and the name of an effect size column if there is one.}
+
+You are looking for those four things mentioned. Now is also the time to gather your text files with known SNPs and known effects. For example, in the simulated known-truth data sets that we used, there are 35 SNPs with known effects, and over 780,000 SNPs with effects of zero. 
+
+The goal is to assess how well PLINK was at identifying those 35 SNPs as compared to the ones where there are no effects. We are also going to include a SNP effects text file, so that we can measure the effectiveness for PLINK at determining those. 
+
+\begin{center}
+	\makebox[12cm][r]{\includegraphics[width=17cm]{doc_step3_1}}
+\end{center}
+
+\textbf{Step 3-B) Gather known SNP and known effect text files.}
+
+The known SNP file contains essentially just text with a list of all the SNPs with known effects in our case, its a list of 35 SNPs. For us, these are called syntruth.txt and synbetas03.txt respectively and we have included screenshots so you can get an idea of what they need to look like.
+
+\includegraphics[width=\textwidth]{doc_step3_2}
+
+The known effects text file is the same way and it \textit{must} be in the same order as the SNPs. This means (looking at the above screenshots) that SNP CWAW1335 has effect 0.0324 and so on. This information ordering information is used by \textit{Validate} to assign true effect sizes to all the SNPs in your outputs (and in doing so labels all others as zero). Also, \textit{Validate} uses the information from the known SNPs file to label all SNPs in your output as either TRUE or FALSE based on whether or not they are included in that file. 
+
+\includegraphics[width=\textwidth]{doc_step3_3}
+
+This is how performance measures are inherently generated, so this \textit{must} be included.
+
+By default, \textit{Validate} includes classification measures such as AUC and so you must include known SNPs file. However, the known effects file is optional. 
+
+
 
 \section{Visualizing the Validation}
 

@@ -3,7 +3,7 @@
 \contentsline {subsection}{\numberline {1.2}Why Validate?}{3}
 \contentsline {subsection}{\numberline {1.3}Getting iPlant Credentials}{4}
 \contentsline {subsection}{\numberline {1.4}Getting Your Application on an API}{4}
-\contentsline {subsection}{\numberline {1.5}Where Can I Get These?}{4}
+\contentsline {subsection}{\numberline {1.5}Where Can I Get These Softwares?}{4}
 \contentsline {subsection}{\numberline {1.6}How to Use This Manual}{4}
 \contentsline {section}{\numberline {2}Running Simulations}{6}
 \contentsline {subsection}{\numberline {2.1}How To Run Simulations with rPlant}{6}
@@ -14,17 +14,17 @@
 \contentsline {subsection}{\numberline {3.3}How to Use Aggregate on Atmosphere}{16}
 \contentsline {section}{\numberline {4}Validating with Validate}{16}
 \contentsline {subsection}{\numberline {4.1}How to Use Validate on the DE}{16}
-\contentsline {section}{\numberline {5}Visualizing the Validation}{16}
-\contentsline {subsection}{\numberline {5.1}How to Use the Demonstrate R Package}{16}
-\contentsline {subsection}{\numberline {5.2}How to Use Demonstrate on the DE}{16}
-\contentsline {subsection}{\numberline {5.3}How to Use Demonstrate on Atmosphere}{16}
-\contentsline {section}{\numberline {6}Acknowledgements}{16}
-\contentsline {section}{\numberline {7}How to Interpret Performance Measures}{16}
-\contentsline {subsection}{\numberline {7.1}AUC}{16}
-\contentsline {subsection}{\numberline {7.2}H}{16}
-\contentsline {subsection}{\numberline {7.3}KS}{16}
-\contentsline {subsection}{\numberline {7.4}TPR}{16}
-\contentsline {subsection}{\numberline {7.5}FPR}{16}
-\contentsline {subsection}{\numberline {7.6}Accuracy}{16}
-\contentsline {subsection}{\numberline {7.7}MAE}{16}
-\contentsline {subsection}{\numberline {7.8}RMSE}{16}
+\contentsline {section}{\numberline {5}Visualizing the Validation}{19}
+\contentsline {subsection}{\numberline {5.1}How to Use the Demonstrate R Package}{19}
+\contentsline {subsection}{\numberline {5.2}How to Use Demonstrate on the DE}{19}
+\contentsline {subsection}{\numberline {5.3}How to Use Demonstrate on Atmosphere}{19}
+\contentsline {section}{\numberline {6}Acknowledgements}{19}
+\contentsline {section}{\numberline {7}How to Interpret Performance Measures}{19}
+\contentsline {subsection}{\numberline {7.1}AUC}{19}
+\contentsline {subsection}{\numberline {7.2}H}{19}
+\contentsline {subsection}{\numberline {7.3}KS}{19}
+\contentsline {subsection}{\numberline {7.4}TPR}{19}
+\contentsline {subsection}{\numberline {7.5}FPR}{19}
+\contentsline {subsection}{\numberline {7.6}Accuracy}{19}
+\contentsline {subsection}{\numberline {7.7}MAE}{19}
+\contentsline {subsection}{\numberline {7.8}RMSE}{19}
