@@ -395,7 +395,20 @@ Upload both of these text files using the Discovery Environment. This is extreme
 
 It's time to run \textit{Validate} finally! Open up the Apps icon on the DE and select \textit{Validate}. Then you need to just fill in the form. Select a name and a description of your choice.
 
+Then fill in the inputs section. For the folder containing GWAS/QTL, you input the folder that contains all of your tool outputs. In our case, our PLINK outputs are contained in the folder \textit{dalanders/analyses/my\_Validate\_folder}. 
 
+The truth file is what we have been referring to as the known SNPs file, and the effects file is what we have been referring to as the known effects file. Again, they need to be in that format. 
+
+On the column names and additional options tab, input the names of columns that we discussed earlier. For us, it was P, SNP, and BETA. 
+
+\begin{center}
+	\makebox[12cm][r]{\includegraphics[width=17cm]{doc_step3_6}}
+\end{center} 
+
+We also input severity ratios here as well for the H measure. We advise that you always do at least two: the first one should be the proportion of positives divided by the proportion of negatives. In our case, that would be 35/780000. The second one should be just 1. \seealso{To see more about how these severity ratio priors influence the H measure, see section 7.2}
+%\begin{center}
+%	\makebox[12cm][r]{\includegraphics[width=17cm]{doc_step3_6}}
+%\end{center} 
 
 \section{Visualizing the Validation}
 
