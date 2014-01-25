@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  25 JAN 2014 12:41
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  25 JAN 2014 12:56
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -242,35 +242,35 @@ File: doc_step1_1.png Graphic file (type png)
 Package pdftex.def Info: doc_step1_1.png used on input line 114.
 (pdftex.def)             Requested size: 316.0pt x 436.05812pt.
  [5 <./doc_step1_1.png>]
-LaTeX Font Info:    Try loading font information for OML+cmr on input line 125.
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 126.
 
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/base/omlcmr.fd
 File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <8> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 125.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 126.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 128.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 129.
+(Font)              <8> on input line 129.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 130.
 
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 129.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 130.
 
 <doc_step1_2.png, id=29, 635.37375pt x 276.03125pt>
 File: doc_step1_2.png Graphic file (type png)
  <use doc_step1_2.png>
-Package pdftex.def Info: doc_step1_2.png used on input line 146.
+Package pdftex.def Info: doc_step1_2.png used on input line 147.
 (pdftex.def)             Requested size: 316.0pt x 137.28662pt.
 
 <doc_step1_3.png, id=30, 640.3925pt x 881.2925pt>
 File: doc_step1_3.png Graphic file (type png)
  <use doc_step1_3.png>
-Package pdftex.def Info: doc_step1_3.png used on input line 158.
+Package pdftex.def Info: doc_step1_3.png used on input line 159.
 (pdftex.def)             Requested size: 316.0pt x 434.87622pt.
 
 [6 <./doc_step1_2.png>] [7 <./doc_step1_3.png>] [8] [9]
@@ -284,32 +284,42 @@ Overfull \hbox (25.43306pt too wide) in paragraph at lines 280--281
  [] 
  []
 
-[10 <./doc_step2_1.png>] (./doc2.aux) ) 
+
+Underfull \hbox (badness 1558) in paragraph at lines 293--293
+\OT1/cmr/m/n/9 name and you be-gin iPlant
+ []
+
+<doc_step2_2.png, id=48, 570.13pt x 249.93375pt>
+File: doc_step2_2.png Graphic file (type png)
+ <use doc_step2_2.png>
+Package pdftex.def Info: doc_step2_2.png used on input line 303.
+(pdftex.def)             Requested size: 316.0pt x 138.528pt.
+ [10 <./doc_step2_1.png>] [11 <./doc_step2_2.png>] (./doc2.aux) ) 
 Here is how much of TeX's memory you used:
- 3721 strings out of 493488
- 51598 string characters out of 3141326
+ 3726 strings out of 493488
+ 51692 string characters out of 3141326
  165510 words of memory out of 3000000
- 6985 multiletter control sequences out of 15000+200000
+ 6989 multiletter control sequences out of 15000+200000
  9259 words of font info for 32 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
  38i,6n,41p,863b,1863s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/local/texlive/2012/texmf-dist/font
-s/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2012/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2012/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2012/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmbxti10.pfb></usr/local/texlive/2012/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2012/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmr9.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmsl10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmsy9.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmti10.pfb>
-Output written on doc2.pdf (10 pages, 678825 bytes).
+</usr/local/te
+xlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/tex
+live/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texl
+ive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texliv
+e/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/local/texli
+ve/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive
+/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2
+012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2012
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2012/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/local/texlive/2012/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2012/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2012/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on doc2.pdf (11 pages, 718541 bytes).
 PDF statistics:
- 90 PDF objects out of 1000 (max. 8388607)
- 60 compressed objects within 1 object stream
+ 94 PDF objects out of 1000 (max. 8388607)
+ 62 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 

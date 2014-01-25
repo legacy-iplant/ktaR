@@ -118,7 +118,8 @@ If you haven't already installed rPlant, we recommend that you do that. After th
 
 \textbf{Step 1-b) Consider the strategy you want to use. Do you want to use all your known-truth data sets, or just a sample? And if a sample, should you take a stratified sample?}
 
-The following code is to just an example of how the submission may go assuming your known-truth data sets are in something like a raw format, where each known-truth data set is stored in a single file. rPlant assumes you already include your iPlant data store username in the files path, so that "iplant/home/username/simulations" is just written as "simulations" or "iplant/home/username/analyses" is just written as "analyses". This is, of course, because validating your credentials allows you to not have to keep typing you user information over and over again.
+The following code is to just an example of how the submission may go assuming your known-truth data sets are in something like a raw format, where each known-truth data set is stored in a single file. rPlant assumes you already include your iPlant data store username in the files path, so that "iplant/home/username/simulations" is just written as "simulations" or "iplant/home/username/analyses" is just written as "analyses". This is, of course, because validating your credentials allows you to not have to keep typing you user information over and over again. \seealso{These are mainly just example codes. Although you are welcome to copy ours.}
+
 
 %\begin{center}
 \begin{lstlisting}[frame=single]
@@ -132,10 +133,10 @@ The following code is to just an example of how the submission may go assuming y
 +	file.path="simulations", file.list=list(mydir[i,1]))
 +	print(i)
 + }
-\end{lstlisting}
+\end{lstlisting} 
 %\end{center}
 
-\textbf{Step 1-c) Find out the name of your application on the API, and the inputs required.}
+\textbf{Step 1-c) Find out the name of your application on the API, and the inputs required.} 
 
 \vspace{-1mm}
 
@@ -275,14 +276,31 @@ The second major step is accomplished once all the runs have finished. In our ex
 Let's say that we have already run all of our runs. Then we would want to log in to the iPlant Discovery Environment to make sure all the folders are in our analyses folder. As can be seen, each run of PLINK with each distinct known-truth data set has been put in to each folder. If we were to open up each folder, we would see a set of files, of which only one we will want to put through Validate. In the case of this PLINK run, you need to put each file ending in .qassoc (the standard PLINK output filetype) in to a single folder, so that we can run Validate on that folder. 
 
 \newpage
-
 \begin{center}
 	\makebox[12cm][r]{\includegraphics[width=17cm]{doc_step2_1}}
 \end{center}
 
 \textbf{Step 2-b) In the DE, create a new folder for your Validate analysis.}
 
+The \textit{.qassoc} files in this case, are the files containing the actual analysis that we will use for evaluating the effectiveness of PLINK. Particularly, those are the predicted values for each SNP based on the PLINK algorithm. Now, it's time to compare those predicted values with what we know to be the actual values. 
+
 You need to create a folder that we will use for our Validate analysis. In the DE, create a folder called \textit{my\_Validate\_analysis}. 
+
+The goal is to look inside each of the 300 folders we created, and pull out the \textit{.qassoc} file and move it to the folder marked \textit{my\_Validate\_analysis}. 
+
+Since this would take hours, we suggest you launch the application we created called \textit{Aggregate} that provides a fairly easy way to do this (at least, comparatively easier). 
+
+\textbf{Step 2-c) Launch Aggregate.} \seealso{Note that in rPlant, your don't have to type your username and you begin iPlant data store file locations immediately. For example, in rPlant, the same location would just be written as "analyses"} 
+
+Once you launched \textit{Aggregate} you will see there is a place to enter your username and password. Go ahead and enter those. 
+
+\textbf{Step 2-d) Enter username and password.}
+
+Now, you need to type the out the full location of the folder starting with username where your analyses are located. In this case, all of our PLINK analyses folders are located in the folder \textit{dalanders/analyses}.
+
+
+
+\includegraphics[width=\textwidth]{doc_step2_2}
 
 
 
