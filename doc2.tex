@@ -23,7 +23,7 @@
 \newcommand{\eg}{e.\,g..}
 \DeclareRobustCommand\cs[1]{\texttt{\char`\\#1}}
 
-\title{Validate: A Pipeline for Evaluating Performance for GWAS/QTL Tools Using Known-Truth Datasets}
+\title{Validate: A Workflow for Evaluating Performance for GWAS/QTL Tools Using Known-Truth Datasets}
 \author{Ann Stapleton, Kurt Michels, and Dustin Landers \\
 University of North Carolina Wilmington \\
 }
@@ -32,8 +32,8 @@ University of North Carolina Wilmington \\
 \emergencystretch1em  %
 
 \pagestyle{myfootings}
-\markboth{Validate: An Application for Evaluating GWAS/QTL Tools}%
-         {Validate: An Application for Evaluating GWAS/QTL Tools}
+\markboth{Validate: A Workflow for Evaluating GWAS/QTL Tools}%
+         {Validate: A Workflow for Evaluating GWAS/QTL Tools}
 
 \makeindex 
 
@@ -101,13 +101,14 @@ Once you have all your outputs in aggregated folders. You can simply log in to t
 Finally, once you have outputs from \textit{Validate} (which may be more than one), you need to combine them and test the differences in your measures between your simulation's parameters. Demonstrate is an R package (to be installed on the iPlant DE) that quickly combines all your results files in a folder you specify and returns sciplot factorial graphs for parameters you specify. It also returns the combined results file so that you can perform your own analyses.
 \end{enumerate}
 
+\newpage
 \section{Running Simulations}
 
 %\index{layout design}
 
 \subsection{How To Run Simulations with rPlant}
 
-\textbf{Step 1-a) Install R and rPlant}
+\textbf{Step 1-A) Install R and rPlant}
 
 We will first show you how to batch run simulations with rPlant. First, we are using the latest R version, 3.0.2. When you open the R console, it should look something like this (we are using a Mac, so yours may look slightly different, but it will function essentially the same).
 \begin{center}
@@ -116,7 +117,7 @@ We will first show you how to batch run simulations with rPlant. First, we are u
 
 If you haven't already installed rPlant, we recommend that you do that. After that, you need to validate your iPlant credentials so that you can access your simulation files. Then, you will need to get a list of the names of your simulations files and iterate over them in a for loop, submitting jobs to your installed application. 
 
-\textbf{Step 1-b) Consider the strategy you want to use. Do you want to use all your known-truth data sets, or just a sample? And if a sample, should you take a stratified sample?}
+\textbf{Step 1-B) Consider the strategy you want to use. Do you want to use all your known-truth data sets, or just a sample? And if a sample, should you take a stratified sample?}
 
 The following code is to just an example of how the submission may go assuming your known-truth data sets are in something like a raw format, where each known-truth data set is stored in a single file. rPlant assumes you already include your iPlant data store username in the files path, so that "iplant/home/username/simulations" is just written as "simulations" or "iplant/home/username/analyses" is just written as "analyses". This is, of course, because validating your credentials allows you to not have to keep typing you user information over and over again. \seealso{These are mainly just example codes. Although you are welcome to copy ours.}
 
@@ -136,7 +137,7 @@ The following code is to just an example of how the submission may go assuming y
 \end{lstlisting} 
 %\end{center}
 
-\textbf{Step 1-c) Find out the name of your application on the API, and the inputs required.} 
+\textbf{Step 1-C) Find out the name of your application on the API, and the inputs required.} 
 
 \vspace{-1mm}
 
@@ -161,7 +162,7 @@ As can be seen, for our particular structure we would need to submit two files f
 
 We can see that the exact name of PLINK on the Foundation API is "plink-1.07ul". We will revisit the earlier explanation to see how we would submit a PLINK job using the PEDMAP format.
 
-\textbf{Step 1-d) Use the short R script to select known-truth data sets and submit a job run for each one using your application.}
+\textbf{Step 1-D) Use the short R script to select known-truth data sets and submit a job run for each one using your application.}
 
 \begin{center}
 \begin{lstlisting}[frame=single]
@@ -271,7 +272,7 @@ This insures that we include all of our genotypes in our runs, but there are sim
 \subsection{How to Use the GUI Aggregate Tool}
 The second major step is accomplished once all the runs have finished. In our example, depending on the resources available, PLINK can finish in a range from ten seconds to two and half minutes per run (not including the queuing process). This is non-linear as well, because many will be running simultaneously on separate nodes while some remain in queues. Its hard to gauge exactly how long your tool will take, but it will almost definitely run faster on multiple nodes this way.
 
-\textbf{Step 2-a) Log in to the DE and make sure all runs are complete.}
+\textbf{Step 2-A) Log in to the DE and make sure all runs are complete.}
 
 Let's say that we have already run all of our runs. Then we would want to log in to the iPlant Discovery Environment to make sure all the folders are in our analyses folder. As can be seen, each run of PLINK with each distinct known-truth data set has been put in to each folder. If we were to open up each folder, we would see a set of files, of which only one we will want to put through Validate. In the case of this PLINK run, you need to put each file ending in .qassoc (the standard PLINK output filetype) in to a single folder, so that we can run Validate on that folder. 
 
@@ -280,7 +281,7 @@ Let's say that we have already run all of our runs. Then we would want to log in
 	\makebox[12cm][r]{\includegraphics[width=17cm]{doc_step2_1}}
 \end{center}
 
-\textbf{Step 2-b) In the DE, create a new folder for your Validate analysis.}
+\textbf{Step 2-B) In the DE, create a new folder for your Validate analysis.}\seealso{If you are testing for effect sizes that are different for different levels of heritability, you may want to create more folders in this step. Actually, for the rest of this process, you would have to everything multiple times for each folder you create here. Say for example, I'm testing three different heritability levels, which will have three different groups of actual effects. Then I would need to run Validate three different times, and thus need to make three folders in this step and separate them that way.}
 
 The \textit{.qassoc} files in this case, are the files containing the actual analysis that we will use for evaluating the effectiveness of PLINK. Particularly, those are the predicted values for each SNP based on the PLINK algorithm. Now, it's time to compare those predicted values with what we know to be the actual values. 
 
@@ -290,17 +291,17 @@ The goal is to look inside each of the 300 folders we created, and pull out the 
 
 Since this would take hours, we suggest you launch the application we created called \textit{Aggregate} that provides a fairly easy way to do this (at least, comparatively easier). 
 
-\textbf{Step 2-c) Launch Aggregate.} \seealso{Note that in rPlant, your don't have to type your username and you begin iPlant data store file locations immediately. For example, in rPlant, the same location would just be written as "analyses"} 
+\textbf{Step 2-C) Launch Aggregate.} \seealso{Note that in rPlant, your don't have to type your username and you begin iPlant data store file locations immediately. For example, in rPlant, the same location would just be written as "analyses"} 
 
 Once you launched \textit{Aggregate} you will see there is a place to enter your username and password. Go ahead and enter those. 
 
-\textbf{Step 2-d) Enter username and password.}
+\textbf{Step 2-D) Enter username and password.}
 
 Now, you need to type the out the full location of the folder starting with username where your analyses are located. In this case, all of our PLINK analyses folders are located in the folder \textit{dalanders/analyses}.
 
 \includegraphics[width=\textwidth]{doc_step2_2}
 
-\textbf{Step 2-e) Enter the folder location where all your tool analyses are located and click \textit{View Folders in Directory}.}
+\textbf{Step 2-E) Enter the folder location where all your tool analyses are located and click \textit{View Folders in Directory}.}
 
 We will enter \textit{dalanders/analyses} and click the button \textit{View Folders in Directory}. This is provide us with a list of all the files and folders in that directory on the iPlant data store in the left-most listbox.
 \vspace{-1mm}
@@ -308,7 +309,7 @@ We will enter \textit{dalanders/analyses} and click the button \textit{View Fold
 	\makebox[12cm][r]{\includegraphics[width=17cm]{doc_step2_3}}
 \end{center}
 
-\textbf{Step 2-f) Select only folders from the known-truth data sets runs.}
+\textbf{Step 2-F) Select only folders from the known-truth data sets runs.}
 
 Now, we want to just select the folders that we just created. You can select them all using Control + Click to select individual ones, or if you wish to just select the whole list you can select all between two files by using Shift + Click. 
 
@@ -324,7 +325,7 @@ We can scroll up and down to make sure that we have only selected the ones that 
 	\makebox[12cm][r]{\includegraphics[width=17cm]{doc_step2_4}}
 \end{center}
 
-\textbf{Step 2-g) Click \textit{View Contents of Selected Folders}}
+\textbf{Step 2-G) Click \textit{View Contents of Selected Folders}}
 
 Once you've got all your folders in the first listbox, click the button on the right call \textit{View Contents of Selected Folders} and this will iterate over the folders in the left-most listbox and add the contents of all those folders to the right-most listbox. It should take a few minutes, so give it some time. Once its done, see if you can spot the files that you were interested in moving. In our case, they are the files ending in \textit{.qassoc}.
 
@@ -332,7 +333,25 @@ Once you've got all your folders in the first listbox, click the button on the r
 	\makebox[12cm][r]{\includegraphics[width=17cm]{doc_step2_5}}
 \end{center}
 
-As you can see, 
+As you can see, every single item in the right-most listbox is a file or folder contained with \textit{one} of the folders in the left-most listbox. Now, we need to select all the files from the right-most listbox that we wish to move to the folder we created in order to run \textit{Validate}.
+
+\textbf{Step 2-H) Select just the tool outputs from the right-most listbox.}
+
+In order to select just the right files that you intend to move, you can use the same \textit{Select All Containing:} logic button we used earlier, or if they all have the same file extension (as ours do with \textit{.qassoc}) then we can use another option.
+
+Above the right-most listbox is a button labelled \textit{Select File Type}. Next to that, we type \textit{qassoc} in and then click the button in order to just select the file types that we want to move.
+
+\begin{center}
+	\makebox[12cm][r]{\includegraphics[width=17cm]{doc_step2_6}}
+\end{center}
+
+\textbf{Step 2-I) Move the files to your \textit{Validate} analysis folder.}
+
+Now, we can move the files. In the text box next to the \textit{Move Files} button enter the full path of the folder we created just for this purpose in Step 2-B. In our case, we named it \textit{my\_Validate\_analysis} so we would enter in to the text box: \textit{dalanders/analyses/my\_Validate\_analysis}. Then click \textit{Move Files} in order to begin iterating over that list and sending the \textit{.qassoc} files to the folder you created. 
+
+This process can take about as long or longer than it did to actually view the files. Keep in mind, that this process uses the iPlant Foundation API system, so for each item in the right-most list, a request is send to the API to move that file to the folder you specified. 
+
+It may also be worth noting that by the time you read this manual, this could be a fully-integrated step in the iPlant Discovery Environment, as there was talk about this functionality being available given more time. However, we found it necessary, even though this part of the problem is almost entirely logistical, to be able to select files from multiple files and move them in to a single aggregate folder. 
 
 \subsection{How to Use the Aggregate Function in rPlant}
 
