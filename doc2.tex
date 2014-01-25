@@ -367,9 +367,9 @@ It may also be worth noting that by the time you read this manual, this could be
 
 \textbf{Step 3-A) First, take a look at one of your analyses documents on the DE. Check for four things: The nature of the column delimitation, the name of the SNP column, the name of P-value or other importance scoring column, and the name of an effect size column if there is one.}
 
-You are looking for those four things mentioned. Now is also the time to gather your text files with known SNPs and known effects. For example, in the simulated known-truth data sets that we used, there are 35 SNPs with known effects, and over 780,000 SNPs with effects of zero. 
+For example, our SNP column is SNP, our importance column is P, and our effect size column is BETA. You are looking for those four things mentioned. 
 
-The goal is to assess how well PLINK was at identifying those 35 SNPs as compared to the ones where there are no effects. We are also going to include a SNP effects text file, so that we can measure the effectiveness for PLINK at determining those. 
+The goal is to assess how well PLINK was at identifying those known SNPs as compared to the ones where there are no effects. We are also going to include a SNP effects text file, so that we can measure the effectiveness for PLINK at determining those. 
 
 \begin{center}
 	\makebox[12cm][r]{\includegraphics[width=17cm]{doc_step3_1}}
@@ -385,9 +385,15 @@ The known effects text file is the same way and it \textit{must} be in the same 
 
 \includegraphics[width=\textwidth]{doc_step3_3}
 
-This is how performance measures are inherently generated, so this \textit{must} be included.
+This is how performance measures are inherently generated, so this \textit{must} be included. By default, \textit{Validate} includes classification measures such as AUC and so you must include known SNPs file. However, the known effects file is optional. 
 
-By default, \textit{Validate} includes classification measures such as AUC and so you must include known SNPs file. However, the known effects file is optional. 
+\textbf{Step 3-C) Upload your known SNPs file and the known effects file using the DE.}
+
+Upload both of these text files using the Discovery Environment. This is extremely easy to do. It also does not matter where you upload them to.
+
+\textbf{Step 3-D) Run Validate!}
+
+It's time to run \textit{Validate} finally! Open up the Apps icon on the DE and select \textit{Validate}. Then you need to just fill in the form. Select a name and a description of your choice.
 
 
 
