@@ -74,7 +74,7 @@ if (do_effect)
 	my_betas <- as.numeric(read.table(file=beta_file,header=FALSE,stringsAsFactor=FALSE))
 
 # Returns Area Under the ROC Curve
-auc <- function(x,y) {
+auc.dustin <- function(x,y) {
  	x1 <- x[y==TRUE]
  	n1 <- length(x1) 
  	x2 <- x[y==FALSE] 
