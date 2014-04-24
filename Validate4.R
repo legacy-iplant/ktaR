@@ -377,9 +377,9 @@ if (is.null(ret.opts$effect)) {
 } else {
   do.effect <- TRUE
   beta.file <- ret.opts$effect
-#  beta.file <- "/users/dustin/documents/ktar/betas.txt"
+  #  beta.file <- "/users/dustin/documents/ktar/betas.txt"
   beta.col <- ret.opts$beta
-#  beta.col <- "BETA"
+  #  beta.col <- "BETA"
 }
 
 do.truth <- TRUE
@@ -498,7 +498,7 @@ return.TN <- list()
 return.FN <- list()
 
 # Begin for-loop through every simulated output to create descriptive statistics --
-#   	of classification performance
+#     of classification performance
 
 for (i in 1:length(locs)) {
   
@@ -521,7 +521,7 @@ for (i in 1:length(locs)) {
   }
   
   if (do.truth) {
-        
+    
     return.AUC <- append(return.AUC, auc.dustin(my.P.eval("mydata"), this.truth))
     
     metrics <- HMeasure(this.truth, my.P.eval("mydata"))$metrics
@@ -567,5 +567,5 @@ if (length(app.output.list)==1) {
   write.table(x=t(data.frame(names, to.print)),file=file.name,quote=FALSE,
               row.names=FALSE,col.names=FALSE,sep="\t")
 }
-  
+
 # End

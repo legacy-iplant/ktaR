@@ -1,0 +1,8 @@
+What I have done:
+	-working apps: Validate workflow/pipeline
+	-most recently: fixed several bugs with Validate, added 12 new metrics to Validate
+	-currently: adding a DE workflow method for Validate that will allow differing results to be attached followed by immediate graphics and visualizations (this will effectively eliminate the need for “Demonstrate”)
+
+The future:
+	-before I leave we will have: high performance Validate installed on Agave publicly, support for DE batch processing, expanded plot and visualization capacity, a simulation-generation method using the Python package simuPOP to work in congruence with Validate, full documentation—specifically developer documentation so that anyone could take over the project, oh, and finally—Include Validate support for genomic prediction as well as GWAS
+	-Starting April 28: push all foundation API features in to Agave, install DHGLM in Atmosphere, install the newest FaST-LMM in the DE, test several more GWAS methods with Validate including but not limited to: aml, QxPak, and BayesR
