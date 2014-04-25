@@ -353,7 +353,9 @@ options <- matrix(c("folder","f",1,"character",
                     "beta","b",0,"character",
                     "severity","sr",0,"character",
                     "filename","fn",0,"character",
-                    "threshold","th",0,"character"),
+                    "threshold","th",0,"character",
+                    "seper","se",0,"character",
+                    "kttype","kt",0,"character"),
                   ncol=4,byrow=TRUE)
 
 ret.opts <- getopt(options,args)
@@ -363,6 +365,20 @@ truth.file <- ret.opts$class
 SNP.col <- ret.opts$snp
 threshold.col <- ret.opts$score
 file.name <- ret.opts$filename
+
+## Make default delimination tab-delimited
+if (is.null(ret.opts$seper)) {
+  seper <- "tab"
+} else {
+  seper <- ret.opts$seper
+}
+
+## Make default kt input type as OTE
+if (is.null(ret.opts$kttype)) {
+  kttype <- "OTE"
+} else {
+  kttype <- ret.opts$kttype
+}
 
 #app.output.dir <- "~/Desktop/results"
 #truth.file <- "/users/dustin/documents/ktar/truth/PlinkStd10.txt"
@@ -386,10 +402,23 @@ do.truth <- TRUE
 
 # Begin
 app.output.list <- list.files(app.output.dir) # List all files in the app output dir
-my.truth <- as.character(read.table(file=truth.file,header=FALSE,stringsAsFactor=FALSE))
 
-if (do.effect)
-  my.betas <- as.numeric(read.table(file=beta.file,header=FALSE,stringsAsFactor=FALSE))
+## KT Type OTE
+if (kttype=="OTE1") {
+  my.truth <- as.character(
+    read.table(file=truth.file,header=FALSE,stringsAsFactor=FALSE)
+    )
+  
+  if (do.effect) {
+    my.betas <- as.numeric(
+      read.table(file=beta.file,header=FALSE,stringsAsFactor=FALSE)
+      )
+  }
+} else if (kttype=="OTE2") {
+  temp.file <- read.table(file=truth.file,header=FALSE,stringsAsFactor=FALSE)
+  my.truth <- temp.file[,1]
+  my.betas <- temp.file[,2]
+}
 
 # Returns list of file locations
 file.locations <- function(x) {
@@ -399,10 +428,30 @@ file.locations <- function(x) {
 }
 
 # Loads in an application output
-my.read.table <- function(x) {
-  return(
-    read.table(file=x,header=TRUE,stringsAsFactor=FALSE)
-  )
+if (seper=="tab") {
+  
+  my.read.table <- function(x) {
+    return(
+      read.table(file=x,header=TRUE,stringsAsFactor=FALSE)
+    )
+  }
+  
+} else if (seper=="comma") {
+
+  my.read.table <- function(x) {
+    return(
+      read.csv(file=x,header=TRUE,stringsAsFactor=FALSE)
+    )
+  }
+  
+} else if (seper=="space") {
+  
+  my.read.table <- function(x) {
+    return(
+      read.table(file=x,header=TRUE,stringsAsFactor=FALSE,sep=" ")
+    )
+  }
+  
 }
 
 # Returns the SNP vector

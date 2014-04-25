@@ -1,1 +1,1 @@
-rscript --vanilla ~/Documents/ktaR/Validate3.R --folder ~/Desktop/results --class /users/dustin/documents/ktar/truth/PlinkStd10.txt --snp SNP --score P --effect /users/dustin/documents/ktar/betas.txt --severity 1 --threshold 0.05 --filename hellayeahbitch.txt --beta BETA
+rscript --vanilla ~/Documents/ktaR/Validate4.R --folder ~/Desktop/results --class /users/dustin/documents/ktar/truth/PlinkStd10.txt --snp SNP --score P --effect /users/dustin/documents/ktar/betas.txt --severity 1 --threshold 0.05 --filename yepyep.txt --beta BETA —seper ,
