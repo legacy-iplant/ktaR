@@ -355,7 +355,8 @@ options <- matrix(c("folder","f",1,"character",
                     "filename","fn",0,"character",
                     "threshold","th",0,"character",
                     "seper","se",0,"character",
-                    "kttype","kt",0,"character"),
+                    "kttype","kt",0,"character",
+                    "kttypeseper","kts",0,"character"),
                   ncol=4,byrow=TRUE)
 
 ret.opts <- getopt(options,args)
@@ -368,7 +369,7 @@ file.name <- ret.opts$filename
 
 ## Make default delimination tab-delimited
 if (is.null(ret.opts$seper)) {
-  seper <- "tab"
+  seper <- "whitespace"
 } else {
   seper <- ret.opts$seper
 }
@@ -379,6 +380,8 @@ if (is.null(ret.opts$kttype)) {
 } else {
   kttype <- ret.opts$kttype
 }
+
+## Make default kt type seper whitespace-delimited
 
 #app.output.dir <- "~/Desktop/results"
 #truth.file <- "/users/dustin/documents/ktar/truth/PlinkStd10.txt"
@@ -436,31 +439,24 @@ file.locations <- function(x) {
 }
 
 # Loads in an application output
-if (seper=="tab") {
+if (seper=="whitespace") {
   
-  my.read.table <- function(x) {
-    return(
-      read.table(file=x,header=TRUE,stringsAsFactor=FALSE)
-    )
-  }
-  
-} else if (seper=="comma") {
+      my.read.table <- function(x) {
+        return(
+          read.table(file=x,header=TRUE,stringsAsFactor=FALSE)
+        )
+      }
+      
+    } else if (seper=="comma") {
+    
+      my.read.table <- function(x) {
+        return(
+          read.csv(file=x,header=TRUE,stringsAsFactor=FALSE)
+        )
+      }
+      
+    } 
 
-  my.read.table <- function(x) {
-    return(
-      read.csv(file=x,header=TRUE,stringsAsFactor=FALSE)
-    )
-  }
-  
-} else if (seper=="space") {
-  
-  my.read.table <- function(x) {
-    return(
-      read.table(file=x,header=TRUE,stringsAsFactor=FALSE,sep=" ")
-    )
-  }
-  
-}
 
 # Returns the SNP vector
 my.SNP.eval <- function(x="mydata") {
