@@ -54,9 +54,9 @@ relabel <-  function (labels)
                                                                                                                                "Non-case")))
   if (cond.temp) {
     levels(labels) <- c("1", "0")
-    message("Class labels have been switched from (", paste(input.labels[1], 
+    message("\nClass labels have been switched from (", paste(input.labels[1], 
                                                             input.labels[2], sep = ","), ") to (", paste("1", 
-                                                                                                         "0", sep = ","), ")")
+                                                                                                         "0", sep = ","), ")\n")
     labels <- as.factor(labels)
     labels <- 2 - as.numeric(labels)
   }
@@ -403,7 +403,7 @@ do.truth <- TRUE
 # Begin
 app.output.list <- list.files(app.output.dir) # List all files in the app output dir
 
-## KT Type OTE
+## KT File Type OTE, OTE2, and other
 if (kttype=="OTE1") {
   my.truth <- as.character(
     read.table(file=truth.file,header=FALSE,stringsAsFactor=FALSE)
@@ -416,6 +416,11 @@ if (kttype=="OTE1") {
   }
 } else if (kttype=="OTE2") {
   temp.file <- read.table(file=truth.file,header=FALSE,stringsAsFactor=FALSE)
+  
+  if (ncol(temp.file) > nrow(temp.file)) {
+    temp.file <- t(temp.file)
+  }
+  
   my.truth <- temp.file[,1]
   my.betas <- temp.file[,2]
 }
@@ -551,7 +556,7 @@ return.FN <- list()
 
 for (i in 1:length(locs)) {
   
-  cat("\nLoop",i,"for evaluation metrics on",locs[[i]])
+  cat("\nLoop",i,"for evaluation metrics on",locs[[i]],"\n")
   
   mydata <- my.read.table(locs[[i]])
   this.truth <- sapply(my.SNP.eval("mydata"), in.truth)
