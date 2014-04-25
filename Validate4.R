@@ -417,12 +417,15 @@ if (kttype=="OTE1") {
 } else if (kttype=="OTE2") {
   temp.file <- read.table(file=truth.file,header=FALSE,stringsAsFactor=FALSE)
   
-  if (ncol(temp.file) > nrow(temp.file)) {
+  if (is.character(temp.file[1,])) {
+    
     temp.file <- t(temp.file)
+    
   }
   
   my.truth <- temp.file[,1]
   my.betas <- temp.file[,2]
+  
 }
 
 # Returns list of file locations
