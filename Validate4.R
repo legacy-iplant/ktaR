@@ -365,7 +365,13 @@ app.output.dir <- ret.opts$folder
 truth.file <- ret.opts$class
 SNP.col <- ret.opts$snp
 threshold.col <- ret.opts$score
-file.name <- ret.opts$filename
+
+## Provide a filename if one is not provided
+if (is.null(ret.opts$filename)) {
+  file.name <- "Results.txt"
+} else {
+  file.name <- ret.opts$filename  
+}
 
 ## Make default delimination tab-delimited
 if (is.null(ret.opts$seper)) {
@@ -622,7 +628,7 @@ return.FN <- list()
 
 for (i in 1:length(locs)) {
   
-  cat("\nLoop",i,"for evaluation metrics on",locs[[i]],"\n")
+  cat("\nIteration",i,"for evaluation metrics on",locs[[i]],"\n")
   
   mydata <- my.read.table(locs[[i]])
   this.truth <- sapply(my.SNP.eval("mydata"), in.truth)
