@@ -382,6 +382,11 @@ if (is.null(ret.opts$kttype)) {
 }
 
 ## Make default kt type seper whitespace-delimited
+if (is.null(ret.opts$kttypeseper)) {
+  kttypeseper <- "whitespace"
+} else {
+  kttypeseper <- ret.opts$kttypeseper
+}
 
 #app.output.dir <- "~/Desktop/results"
 #truth.file <- "/users/dustin/documents/ktar/truth/PlinkStd10.txt"
@@ -407,27 +412,89 @@ do.truth <- TRUE
 app.output.list <- list.files(app.output.dir) # List all files in the app output dir
 
 ## KT File Type OTE, OTE2, and other
-if (kttype=="OTE1") {
-  my.truth <- as.character(
-    read.table(file=truth.file,header=FALSE,stringsAsFactor=FALSE)
+if (kttypeseper=="whitespace") {
+    if (kttype=="OTE1") {
+      my.truth <- as.character(
+        read.table(file=truth.file,header=FALSE,stringsAsFactor=FALSE)
+        )
+      
+      if (do.effect) {
+        my.betas <- as.numeric(
+          read.table(file=beta.file,header=FALSE,stringsAsFactor=FALSE)
+          )
+      }
+      
+    } else if (kttype=="OTE2") {
+      temp.file <- read.table(file=truth.file,header=FALSE,stringsAsFactor=FALSE)
+      
+      if (is.character(temp.file[1,])) {
+        
+        temp.file <- t(temp.file)
+        
+      }
+      
+      my.truth <- temp.file[,1]
+      my.betas <- temp.file[,2]
+      
+    } else if (kttype=="FGS") {
+      temp.file <- read.table(file=truth.file,header=FALSE,stringsAsFactor=FALSE)
+      
+      if (is.character(temp.file[1,])) {
+        
+        temp.file <- t(temp.file)
+        
+      }
+      
+      my.truth <- temp.file[,1]
+      my.betas <- temp.file[,2]
+      
+      my.truth <- my.truth[which(my.betas!=0)]
+      my.betas <- my.betas[which(my.betas!=0)]
+      
+    }
+    
+}
+
+if (kttypeseper=="comma") {
+  if (kttype=="OTE1") {
+    my.truth <- as.character(
+      read.csv(file=truth.file,header=FALSE,stringsAsFactor=FALSE)
     )
-  
-  if (do.effect) {
-    my.betas <- as.numeric(
-      read.table(file=beta.file,header=FALSE,stringsAsFactor=FALSE)
+    
+    if (do.effect) {
+      my.betas <- as.numeric(
+        read.csv(file=beta.file,header=FALSE,stringsAsFactor=FALSE)
       )
-  }
-} else if (kttype=="OTE2") {
-  temp.file <- read.table(file=truth.file,header=FALSE,stringsAsFactor=FALSE)
-  
-  if (is.character(temp.file[1,])) {
+    }
     
-    temp.file <- t(temp.file)
+  } else if (kttype=="OTE2") {
+    temp.file <- read.csv(file=truth.file,header=FALSE,stringsAsFactor=FALSE)
+    
+    if (is.character(temp.file[1,])) {
+      
+      temp.file <- t(temp.file)
+      
+    }
+    
+    my.truth <- temp.file[,1]
+    my.betas <- temp.file[,2]
+    
+  } else if (kttype=="FGS") {
+    temp.file <- read.csv(file=truth.file,header=FALSE,stringsAsFactor=FALSE)
+    
+    if (is.character(temp.file[1,])) {
+      
+      temp.file <- t(temp.file)
+      
+    }
+    
+    my.truth <- temp.file[,1]
+    my.betas <- temp.file[,2]
+    
+    my.truth <- my.truth[which(my.betas!=0)]
+    my.betas <- my.betas[which(my.betas!=0)]
     
   }
-  
-  my.truth <- temp.file[,1]
-  my.betas <- temp.file[,2]
   
 }
 
