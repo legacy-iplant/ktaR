@@ -378,7 +378,7 @@ usage <- function() {
   cat("--kttype to specify the type of known-truth file for --class (either OTE1, OTE1 or FGS)\n")
   cat("--kttypeseper to specify delimination in known-truth file\n")
   cat("--help to see help menu\n")
-  quit("yes")
+  quit("no")
 }
 
 if (is.null(ret.opts$help)!=TRUE) {
