@@ -46,8 +46,8 @@ def usage():
 # Checks for arguments at beginning of the execution of the main function
 def checkArgs():
 	try:
-		opts, args = getopt.getopt(sys.argv[1:], shortopts="vha:F:C:S:P:e:b:V:f:t:s:k:r", longopts=["verbose", "help", 
-			"analysis=", "folder=", "class=", "snp=", "score=", "effect=", "filename=", "threshold=", "seper=", "kttype=",
+		opts, args = getopt.getopt(sys.argv[1:], shortopts="vha:F:C:S:P:b:V:f:t:s:k:r", longopts=["verbose", "help", 
+			"analysis=", "folder=", "class=", "snp=", "score=", "beta=", "filename=", "threshold=", "seper=", "kttype=",
 			"kttypeseper="])
 
 	except getopt.GetoptError as err:
@@ -97,6 +97,10 @@ def checkArgs():
 			score = str(o[1])
 			if verbose:
 				print "Scoring column name (e.g., p-value column) in results files is specified as", score
+		if o[0] in ("--beta", "-b"):
+			beta = str(o[1])
+			if verbose:
+				print "Estimated SNP Weight column name (e.g., regression betas) in results files is specified as", beta
 		if o[0] in ("--filename", "-f"):
 			filename = str(o[1])
 			if verbose:
