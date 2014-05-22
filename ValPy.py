@@ -56,6 +56,7 @@ def checkArgs():
 	kttype = "OTE"
 	kttypeseper = "whitespace"
 
+	# Looping through command-line arguments to replace and/or create initialized values
 	for o in opts:
 		if o[0] in ("--help", "-h"):
 			usage()
@@ -67,15 +68,24 @@ def checkArgs():
 	for o in opts:
 		if o[0] in ("--folder", "-F"):
 			folder = str(o[1])
-			print folder
+			if verbose:
+				print "Folder of results files for validation is located in", folder
 		if o[0] in ("--analysis", "-a"):
 			analysis = str(o[1])
+			if verbose:
+				print "Analysis method being validated is specified as", analysis
 		if o[0] in ("--class", "-C"):
 			truth = str(o[1])
+			if verbose:
+				print "Truth file is", truth
 		if o[0] in ("--snp", "-S"):
 			snp = str(o[1])
+			if verbose:
+				print "SNP column name in results files is specified as", snp
 		if o[0] in ("--score", "-P"):
 			score = str(o[1])
+			if verbose:
+				print "Scoring column name (e.g., p-value column) in results files is specified as", score
 		if o[0] in ("--filename", "-f"):
 			filename = str(o[1])
 			if verbose:
