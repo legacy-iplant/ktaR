@@ -36,7 +36,8 @@ def usage():
 def checkArgs():
 	try:
 		opts, args = getopt.getopt(sys.argv[1:], shortopts="vha:F:C:S:P:e:b:V:f:t:s:k:r", longopts=["verbose", "help", 
-			"analysis=", "folder=", "class=", "snp=", "score=", "effect=", "filename=", "threshold=", "seper=", "kttype=", "kttypeseper="])
+			"analysis=", "folder=", "class=", "snp=", "score=", "effect=", "filename=", "threshold=", "seper=", "kttype=",
+			"kttypeseper="])
 
 	except getopt.GetoptError as err:
 		print(err)
@@ -56,66 +57,71 @@ def checkArgs():
 	kttypeseper = "whitespace"
 
 	for o in opts:
-		if o[0] in ("--verbose", "-V"):
-			verbose = True
-			print ("Verbose mode")
-	for o in opts:
 		if o[0] in ("--help", "-h"):
 			usage()
 			sys.exit()
 	for o in opts:
-		if o[0] in ("--analysis", "-a"):
-			analysis = str(o[1])
+		if o[0] in ("--verbose", "-V"):
+			verbose = True
+			print ("Verbose mode")
 	for o in opts:
 		if o[0] in ("--folder", "-F"):
 			folder = str(o[1])
 			print folder
-		else:
-			print "Need to specify folder of results files for validation.\n"
-			usage()
-			sys.exit()
-	for o in opts:
-		if o[0] in ("--class", "-c"):
+		if o[0] in ("--analysis", "-a"):
+			analysis = str(o[1])
+		if o[0] in ("--class", "-C"):
 			truth = str(o[1])
-	for o in opts:
 		if o[0] in ("--snp", "-S"):
 			snp = str(o[1])
-		else:
-			print "Need to specify the name of the SNP column\n"
-			usage()
-			sys.exit()
-	for o in opts:
 		if o[0] in ("--score", "-P"):
 			score = str(o[1])
-		else:
-			print "Need to specify the name of the scoring column (e.g., p-value column)\n"
-			usage()
-			sys.exit()
-	for o in opts:
 		if o[0] in ("--filename", "-f"):
 			filename = str(o[1])
-		if verbose:
-			print "Filename specified as", filename
-	for o in opts:
+			if verbose:
+				print "Filename specified as", filename
 		if o[0] in ("--threshold", "-t"):
 			threshold = float(o[1])
-		if verbose:
-			print "Theshold is set at", threshold
-	for o in opts:
+			if verbose:
+				print "Theshold is set at", threshold
 		if o[0] in ("--seper", "-s"):
 			seper = str(o[1])
-		if verbose:
-			print "Delimination of results files is set as", seper
-	for o in opts:
+			if verbose:
+				print "Delimination of results files is set as", seper
 		if o[0] in ("--kttype", "-k"):
 			kttype = str(o[1])
-		if verbose:
-			print "Known-truth data format is set as", kttype
-	for o in opts:
+			if verbose:
+				print "Known-truth data format is set as", kttype
 		if o[1] in ("--kttypeseper", "-r"):
 			kttypeseper = str(o[1])
-		if verbose:
-			print "Known-truth data format delimination is set as", kttypeseper
+			if verbose:
+				print "Known-truth data format delimination is set as", kttypeseper
+
+	# Check to see if needed variables are defined
+	try:
+		folder
+	except NameError:
+		print "Folder of results files to be validated must be specificed."
+		usage()
+		sys.exit()
+	try:
+		truth
+	except NameError:
+		print "Known-truth data file must be supplied in order for results to be validated."
+		usage()
+		sys.exit()
+	try:
+		snp
+	except NameError:
+		print "Name of SNP column in results files must be specified."
+		usage()
+		sys.exit()
+	try:
+		score
+	except NameError:
+		print "Name of scoring column must be specified in order to validate SNP classifications."
+		usage()
+		sys.exit()
 
 
 
