@@ -2,6 +2,19 @@
 # Author: Dustin Landers
 # Contact: (770 289-8830 :: dustin.landers@gmail.com
 
+"""Dependencies"""
+
+import math
+import random
+import getopt
+import sys
+import os
+import numpy
+import csv
+
+
+"""Functions to be used later in the software"""
+# Prints introduction graphics for every time the software is run
 def initializeGraphics():
 	print "###################################################################"
 	print "###                                                            ####"
@@ -12,17 +25,6 @@ def initializeGraphics():
 	print "###################################################################"
 
 
-"""Dependencies"""
-
-import math
-import random
-import getopt
-import sys
-import os
-import numpy
-
-
-"""Functions to be used later in the software"""
 # Prints all possible command-line arguments to the screen; also ends the execution of the software
 def usage():
 	print "\n\n\n"
@@ -148,8 +150,19 @@ def checkArgs():
 		usage()
 		sys.exit()
 
-# Runs GWAS analysis
-#def GWAS():
+
+# Loads in necessary files in as numpy arrays
+def loadFiles():
+	global data
+	data = Data(folder + "/" + appOutputList[0])
+	print data.data
+
+
+# Runs GWAS application Validate analysis
+def GWAS():
+	global appOutputList
+	appOutputList = os.listdir(folder)
+	loadFiles()
 
 
 """End list of functions; main function and execution below"""
@@ -157,6 +170,8 @@ def checkArgs():
 def main():
 	initializeGraphics()
 	checkArgs()
+	if analysis == "GWAS":
+		GWAS()
 
 
 # Executes main function; initializes software
