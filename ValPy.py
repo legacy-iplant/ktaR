@@ -140,5 +140,6 @@ def main():
 	checkArgs()
 
 
+# Executes main function; initializes software
 if __name__ == "__main__":
 	main()
