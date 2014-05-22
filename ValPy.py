@@ -4,11 +4,11 @@
 
 def initializeGraphics():
 	print "###################################################################"
-	print "###															  ####"
+	print "###                                                            ####"
 	print "###      Validate for Python!                                  ####"
-	print "###      By Dustin A. Landers    							  ####"
+	print "###      By Dustin A. Landers                                  ####"
 	print "###      Contact: (770) 289-8830 -- dustin.landers@gmail.com   ####"
-	print "###															  ####"
+	print "###                                                            ####"
 	print "###################################################################"
 
 
@@ -151,6 +151,7 @@ def checkArgs():
 """End list of functions; main function and execution below"""
 # Executes all necessary functions
 def main():
+	initializeGraphics()
 	checkArgs()
 
 
