@@ -15,7 +15,14 @@ def main():
 	folder, analysis, truth, snp, score, beta, filename, threshold, seper, kttype, kttypeseper = checkArgs()
 	appOutputList = checkList(getList(folder))
 	ktFile = loadKT(truth, kttypeseper)
-	#if kttype is "OTE":
+	
+	if kttype is "OTE":
+		acquiredData = loadFile(folder, appOutputList[0], seper)
+		snpColumnNo = acquiredData.header.index(snp)
+		snpColumn = list()
+		for each in acquiredData.data.iteritems():
+			snpColumn.append(each[1][snpColumnNo])
+		
 
 	for each in appOutputList:
 		acquiredData = loadFile(folder, each, seper)
