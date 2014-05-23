@@ -5,17 +5,23 @@ Class for whitespace and comma delimited data
 
 class Data:
 
-	def __init__(self, filelocation, seper):
+	def __init__(self, filelocation, seper, header=True):
 		self.filelocation = filelocation
 		self.seper = seper
-		if self.seper == "whitespace":
-			self.data, self.n = self.whitespace()
-			self.header = self.data[0]
-			self.data = {thisKey : self.data[thisKey] for thisKey in range(1, self.n)}
-		if self.seper == "comma":
-			self.data, self.n = self.comma()
-			self.header = self.data[0]
-			self.data = {thisKey : self.data[thisKey] for thisKey in range(1, self.n)}
+		if header is True:
+			if self.seper == "whitespace":
+				self.data, self.n = self.whitespace()
+				self.header = self.data[0]
+				self.data = {thisKey : self.data[thisKey] for thisKey in range(1, self.n)}
+			if self.seper == "comma":
+				self.data, self.n = self.comma()
+				self.header = self.data[0]
+				self.data = {thisKey : self.data[thisKey] for thisKey in range(1, self.n)}
+		else:
+			if self.seper == "whitespace":
+				self.data, self.n = self.whitespace()
+			if self.seper == "comma":
+				self.data, self.n = self.comma()
 
 	def whitespace(self):
 	    f = open(self.filelocation, "rb")

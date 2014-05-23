@@ -14,7 +14,8 @@ def main():
 	initializeGraphics()
 	folder, analysis, truth, snp, score, beta, filename, threshold, seper, kttype, kttypeseper = checkArgs()
 	appOutputList = checkList(getList(folder))
-	print appOutputList
+	ktFile = loadKT(truth, kttypeseper)
+	print ktFile.data, ktFile.n
 
 
 if __name__ == "__main__":
