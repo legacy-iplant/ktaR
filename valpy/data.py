@@ -12,7 +12,9 @@ class Data:
 		self.filelocation = filelocation
 		self.seper = seper
 		if self.seper == "whitespace":
-			self.data = self.whitespace()
+			self.data, self.n = self.whitespace()
+			self.header = self.data[0]
+			self.data = {thisKey : self.data[thisKey] for thisKey in range(1, self.n)}
 
 	def whitespace(self):
 	    f = open(self.filelocation, "rb")
@@ -28,4 +30,4 @@ class Data:
 	    		if each is not "":
 	    			data[count].append(each)
 	    	count += 1
-	    return data
+	    return data, count

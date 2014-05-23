@@ -12,7 +12,8 @@ from data import *
 def main():
 	initializeGraphics()
 	checkArgs()
-	print Data("/users/dustin/ktar/outputplink/plinkstd1.qassoc", "whitespace").data[0]
+	print Data("/users/dustin/ktar/outputplink/plinkstd1.qassoc", "whitespace").n
+	print Data("/users/dustin/ktar/outputplink/plinkstd1.qassoc", "whitespace").data[1]
 
 
 if __name__ == "__main__":
