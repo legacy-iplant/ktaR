@@ -5,7 +5,6 @@
 
 """Dependencies"""
 from commandline import *
-from data import *
 from fileimport import *
 from checkhidden import *
 
