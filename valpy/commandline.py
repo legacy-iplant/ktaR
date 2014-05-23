@@ -50,9 +50,6 @@ def checkArgs():
 		usage()
 		sys.exit()
 
-	# Setting needed variables global
-	global verbose, analysis, folder, truth, snp, score, filename, theshold, seper, kttype, kttypeseper
-
 	# Specifiying initial values of needed variables; unneeded specification when desiring defaults
 	verbose = False
 	analysis = "GWAS"
@@ -142,3 +139,11 @@ def checkArgs():
 		print "ERROR: Name of scoring column must be specified in order to validate SNP classifications."
 		usage()
 		sys.exit()
+
+	# Setting beta equal to null if not used; this will placehold the need to not run beta analyses
+	try:
+		beta
+	except NameError:
+		beta = None
+
+	return folder, analysis, truth, snp, score, beta, filename, threshold, seper, kttype, kttypeseper

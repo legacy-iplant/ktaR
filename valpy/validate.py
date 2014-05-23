@@ -6,15 +6,20 @@
 """Dependencies"""
 from commandline import *
 from data import *
+from fileimport import *
+from checkhidden import *
 
 
 """Main function and execution"""
 def main():
 	initializeGraphics()
-	checkArgs()
-	print Data("/users/dustin/ktar/outputplink/plinkstd1.qassoc", "whitespace").n
-	print Data("/users/dustin/ktar/outputplink/plinkstd1.qassoc", "whitespace").data[1]
-
+	folder, analysis, truth, snp, score, beta, filename, threshold, seper, kttype, kttypeseper = checkArgs()
+	appOutputList = getList(folder)
+	for each in appOutputList:
+		if isHidden(each):
+			appOutputList.remove(each)
+	print appOutputList
+	
 
 if __name__ == "__main__":
 	main()

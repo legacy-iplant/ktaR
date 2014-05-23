@@ -2,9 +2,6 @@
 Class for whitespace and comma delimited data 
 """
 
-import numpy
-
-
 
 class Data:
 
