@@ -15,7 +15,12 @@ def main():
 	folder, analysis, truth, snp, score, beta, filename, threshold, seper, kttype, kttypeseper = checkArgs()
 	appOutputList = checkList(getList(folder))
 	ktFile = loadKT(truth, kttypeseper)
-	print ktFile.data, ktFile.n
+	for each in appOutputList:
+		acquiredData = loadFile(folder, each, seper)
+		snpColumnNo = acquiredData.header.index(snp)
+		snpColumn = list()
+		for each in acquiredData.data.keys():
+			print each
 
 
 if __name__ == "__main__":

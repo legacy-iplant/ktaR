@@ -11,8 +11,8 @@ def getList(folder):
 
 
 def loadFile(folder, thisFile, seper):
-	return data.Data(folder + "/" + thisFile, seper, header=True)
+	return data.Data(folder + "/" + thisFile, seper, skiprow=False)
 
 
 def loadKT(thisFile, seper):
-	return data.Data(thisFile, seper, header=False)
+	return data.Data(thisFile, seper, skiprow=True)
