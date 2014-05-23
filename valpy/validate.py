@@ -5,12 +5,14 @@
 """Dependencies"""
 import math, random, os, numpy, csv
 from commandline import *
+from data import *
 
 
 """Main function and execution"""
 def main():
 	initializeGraphics()
 	checkArgs()
+	print Data("/users/dustin/ktar/outputplink/plinkstd1.qassoc", "whitespace").data[0]
 
 
 if __name__ == "__main__":
