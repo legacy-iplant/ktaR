@@ -19,7 +19,7 @@ def main():
 		if isHidden(each):
 			appOutputList.remove(each)
 	print loadFile(folder, appOutputList[0], seper).header
-	
+
 
 if __name__ == "__main__":
 	main()
