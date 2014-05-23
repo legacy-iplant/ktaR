@@ -6,12 +6,11 @@
 import math, random, os, numpy, csv
 from commandline import *
 
+
 """Main function and execution"""
 def main():
 	initializeGraphics()
 	checkArgs()
-	if analysis == "GWAS":
-		GWAS()
 
 
 if __name__ == "__main__":
