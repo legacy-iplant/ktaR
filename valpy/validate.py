@@ -14,11 +14,6 @@ def main():
 	initializeGraphics()
 	folder, analysis, truth, snp, score, beta, filename, threshold, seper, kttype, kttypeseper = checkArgs()
 	appOutputList = getList(folder)
-	for each in appOutputList:
-		if isHidden(each):
-			appOutputList.remove(each)
-	print appOutputList[1]
-	print loadFile(folder, appOutputList[1], seper).header
 
 
 if __name__ == "__main__":
