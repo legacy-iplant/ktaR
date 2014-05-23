@@ -18,7 +18,7 @@ def main():
 	for each in appOutputList:
 		if isHidden(each):
 			appOutputList.remove(each)
-	print appOutputList
+	print loadFile(folder, appOutputList[0], seper).header
 	
 
 if __name__ == "__main__":
