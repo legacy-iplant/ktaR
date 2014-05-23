@@ -2,8 +2,8 @@
 # Author: Dustin Landers
 # Contact: (770 289-8830 :: dustin.landers@gmail.com
 
+
 """Dependencies"""
-import math, random, os, numpy, csv
 from commandline import *
 from data import *
 
