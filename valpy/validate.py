@@ -13,7 +13,8 @@ from checkhidden import *
 def main():
 	initializeGraphics()
 	folder, analysis, truth, snp, score, beta, filename, threshold, seper, kttype, kttypeseper = checkArgs()
-	appOutputList = getList(folder)
+	appOutputList = checkList(getList(folder))
+	print appOutputList
 
 
 if __name__ == "__main__":
